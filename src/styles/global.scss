@@ -1,0 +1,44 @@
+@use "sass:color";
+
+$dark-navy: #0A192F;
+$navy: #112240;
+$light-navy: #233554;
+$slate: #8892B0;
+$light-slate: #CCD6F6;
+$lightest-slate: #E6F1FF;
+$green: #64FFDA;
+$teal: #5EEAD4;
+
+// Base du corps de la page
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: $dark-navy;
+  color: $light-slate;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $light-slate;
+}
+
+// Styles pour les titres
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 10px 0;
+  color: $light-slate;
+  font-family: 'Montserrat', sans-serif;
+}
+
+// Styles pour les liens
+a {
+  text-decoration: none;
+  color: $green;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: color.adjust($green, $lightness: 10%);
+  }
+}
+
+// Styles pour les sections
+section {
+  padding: 40px 0;
+}

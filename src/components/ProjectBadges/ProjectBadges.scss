@@ -1,0 +1,93 @@
+// ProjectBadges Component Styles
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  padding: 20px 0px;
+  
+  .meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem; // Légèrement plus grand
+    border-radius: 15px;
+    font-size: 0.85rem; // Légèrement plus grand
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    
+    // Effet 3D avec GSAP
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Ombre plus visible par défaut
+    
+    .badge-icon {
+      font-size: 0.95rem;
+      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+    }
+    
+    // Statut badges
+    &.status-in-progress {
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #8b6914;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    }
+    
+    &.status-completed {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+    
+    &.status-paused {
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+    
+    &.status-cancelled {
+      background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+    
+    // Type badges
+    &.type-personal {
+      background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    }
+    
+    &.type-school {
+      background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    
+    &.type-collaborative {
+      background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+    }
+    
+    // Effet hover sans GSAP (pour les interactions simples)
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .project-badges {
+    .meta-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      
+      .badge-icon {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

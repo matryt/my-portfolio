@@ -1,0 +1,27 @@
+@use "../../styles/global.scss" as global;
+
+.projects-page {
+  padding: 80px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 3em;
+  color: global.$green;
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: global.$light-slate;
+  padding: 50px 0;
+}
