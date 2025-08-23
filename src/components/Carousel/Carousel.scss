@@ -8,6 +8,10 @@
   margin: 20px auto 40px; // Ajout d'une marge en bas
 }
 
+.carousel-wrapper .carousel:hover {
+  transform: translateY(-2px);
+}
+
 .carousel {
   overflow: hidden;
   border-radius: 12px;
@@ -20,7 +24,6 @@
       0 10px 30px -15px rgba(2, 12, 27, 0.7),
       0 0 0 1px rgba(100, 255, 218, 0.1),
       0 0 30px rgba(100, 255, 218, 0.15);
-    transform: translateY(-2px);
   }
 }
 

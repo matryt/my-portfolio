@@ -45,10 +45,16 @@
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
     }
     
-    &.status-cancelled {
-      background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
-      color: white;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  &.status-cancelled {
+  background: linear-gradient(135deg, #6b7280 0%, #374151 100%); // Gris foncé vers gris très foncé
+  color: white;
+  box-shadow: 0 4px 14px rgba(55, 65, 81, 0.564); // Ombre plus marquée
+  }
+
+    &.status-waiting-maj {
+      background: linear-gradient(135deg, #fbbf24 0%, #fef08a 100%);
+      color: black;
+      box-shadow: 0 4px 12px rgba(245, 191, 36, 0.4);
     }
     
     // Type badges

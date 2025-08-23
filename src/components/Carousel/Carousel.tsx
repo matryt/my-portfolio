@@ -13,7 +13,7 @@ const Carousel: React.FC<CarouselProps> = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const extendedImages = [images[images.length - 1], ...images, images[0]];
+  const extendedImages = images.length == 1 ? [images[0]] : [images[images.length - 1], ...images, images[0]];
   const goToPrevious = () => {
     if (!isTransitioning) return;
     setCurrentImageIndex((prev) => prev - 1);
@@ -28,7 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({
     const handleTransitionEnd = () => {
       setIsTransitioning(false);
       if (currentImageIndex === extendedImages.length - 1) {
-        setCurrentImageIndex(1);
+        setCurrentImageIndex(images.length > 1 ? 1 : 0);
       } else if (currentImageIndex === 0) {
         setCurrentImageIndex(images.length);
       }
@@ -38,31 +38,25 @@ const Carousel: React.FC<CarouselProps> = ({
     return () =>
       carousel.removeEventListener("transitionend", handleTransitionEnd);
   }, [currentImageIndex, extendedImages.length, images.length]);
-  useEffect(() => {
-    if (!autoPlay) return;
-    
-    const interval = setInterval(() => {
-      goToNext();
-    }, autoPlayInterval);
 
-    return () => clearInterval(interval);
-  }, [autoPlay, autoPlayInterval, currentImageIndex]);
   const goToSlide = (index: number) => {
     if (!isTransitioning) return;
     setCurrentImageIndex(index + 1);
   };
   return (
     <div className="carousel-container">
-      {" "}
-      <button onClick={goToPrevious} className="carousel-button prev">
-        {" "}
-        &lt;{" "}
-      </button>{" "}
-      <button onClick={goToNext} className="carousel-button next">
-        {" "}
-        &gt;{" "}
-      </button>{" "}
-      <div
+      <div className="carousel-wrapper">
+        {images.length > 1 && (
+       <>
+         <button onClick={goToPrevious} className="carousel-button prev">
+           &lt;
+         </button>
+         <button onClick={goToNext} className="carousel-button next">
+           &gt;
+         </button>
+       </>
+     )}
+        <div
         className="carousel"
         style={
           { "--total-images": extendedImages.length } as React.CSSProperties
@@ -75,7 +69,7 @@ const Carousel: React.FC<CarouselProps> = ({
           style={
             {
               transform: `translateX(-${
-                (currentImageIndex * 100)
+                images.length > 1 ? (currentImageIndex * 100) : 0
               }%)`,
               transition: isTransitioning
                 ? "transform 0.5s ease-in-out"
@@ -92,15 +86,16 @@ const Carousel: React.FC<CarouselProps> = ({
               alt={`Screenshot ${index + 1}`}
               className="carousel-image"
               style={{
-                opacity: currentImageIndex === index ? 1 : 0,
+                opacity: currentImageIndex === index || images.length == 1 ? 1 : 0,
                 transition: isTransitioning ? "opacity 0.5s ease-in-out" : "none",
               }}
             />
           ))}{" "}
         </div>{" "}
-        <div className="carousel-indicators">
+      </div>{" "}
+      <div className="carousel-indicators">
           {" "}
-          {images.map((_, index) => (
+          {images.length > 1 && images.map((_, index) => (
             <span
               key={index}
               className={`indicator-dot ${
@@ -114,7 +109,7 @@ const Carousel: React.FC<CarouselProps> = ({
             ></span>
           ))}{" "}
         </div>{" "}
-      </div>{" "}
+      </div>
     </div>
   );
 };

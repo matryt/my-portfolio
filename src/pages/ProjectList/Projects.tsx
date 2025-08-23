@@ -1,6 +1,6 @@
 // src/pages/Projects.tsx
 import React, { useState, useEffect } from 'react';
-import ProjectCard from '../ProjectCard';
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
 import { fetchProjects } from '../../api';
 import type { Project } from '../../types/api';
 import './Projects.scss';

@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import ProjectDetail from './components/ProjectDetails/ProjectDetails';
-import Projects from './components/ProjectList/Projects';
+import Home from './pages/Home/Home';
+import ProjectDetail from './pages/ProjectDetails/ProjectDetails';
+import Projects from './pages/ProjectList/Projects';
 
 function App() {
   return (

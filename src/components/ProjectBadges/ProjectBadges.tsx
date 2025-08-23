@@ -28,7 +28,8 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
       'in-progress': { text: 'En cours', icon: '🔄', className: 'status-in-progress' },
       'completed': { text: 'Terminé', icon: '✅', className: 'status-completed' },
       'paused': { text: 'En pause', icon: '⏸️', className: 'status-paused' },
-      'cancelled': { text: 'Annulé', icon: '❌', className: 'status-cancelled' }
+      'cancelled': { text: 'Prototype - en l\'état', icon: '⛔​​', className: 'status-cancelled' },
+      'waiting-maj': { text: 'Partiellement fonctionnel - À actualiser', icon: '⏳', className: 'status-waiting-maj' }
     };
     return statusConfig[status] || { text: status, icon: '', className: 'status-default' };
   };

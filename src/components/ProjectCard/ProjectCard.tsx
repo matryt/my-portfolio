@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Project } from '../types/api';
+import type { Project } from '../../types/api';
 import './ProjectCard.scss';
 
 interface ProjectCardProps {
