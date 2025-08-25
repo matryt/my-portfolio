@@ -66,6 +66,17 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
+  // Créer une zone de hover plus grande avec un pseudo-élément
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+  }
+
   &:hover {
     background: linear-gradient(135deg, global.$green, rgba(100, 255, 218, 0.8));
     color: global.$navy;
@@ -80,18 +91,10 @@
 
   &.prev {
     left: -70px;
-    
-    &:hover {
-      left: -65px;
-    }
   }
 
   &.next {
     right: -70px;
-    
-    &:hover {
-      right: -65px;
-    }
   }
 }
 

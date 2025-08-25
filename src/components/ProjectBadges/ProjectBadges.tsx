@@ -63,7 +63,7 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
       
       badges.forEach((badge) => {
         const element = badge as HTMLElement;
-        const intensity = 45; // Augmenté pour plus de visibilité
+        const intensity = 30; // Augmenté pour plus de visibilité
         
         // Calcul des rotations (tilt effect)
         const rotateX = -normalizedY * intensity; // Inclinaison avant/arrière
@@ -125,19 +125,22 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
   return (
     <div className="project-badges" ref={containerRef}>
       {statusBadge && (
-        <span className={`meta-badge ${statusBadge.className}`}>
+        <span className={`meta-badge ${statusBadge.className}`} title="État du projet">
+          <span className="badge-category">État:</span>
           <span className="badge-icon">{statusBadge.icon}</span>
           {statusBadge.text}
         </span>
       )}
       {typeBadge && (
-        <span className={`meta-badge ${typeBadge.className}`}>
+        <span className={`meta-badge ${typeBadge.className}`} title="Type de projet">
+          <span className="badge-category">Type:</span>
           <span className="badge-icon">{typeBadge.icon}</span>
           {typeBadge.text}
         </span>
       )}
       {isCollaborative && (
-        <span className="meta-badge type-collaborative">
+        <span className="meta-badge type-collaborative" title="Mode de réalisation">
+          <span className="badge-category">Mode:</span>
           <span className="badge-icon">🤝</span>
           Collaboratif
         </span>

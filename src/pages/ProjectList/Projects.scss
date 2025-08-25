@@ -1,7 +1,7 @@
 @use "../../styles/global.scss" as global;
 
 .projects-page {
-  padding: 80px 20px 40px;
+  padding: 150px 20px 40px; // Augmenté pour compenser le header fixe
   max-width: 1200px;
   margin: 0 auto;
 }

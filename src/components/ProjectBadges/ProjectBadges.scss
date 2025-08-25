@@ -21,6 +21,15 @@
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Ombre plus visible par défaut
     
+    .badge-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 0.2rem;
+    }
+    
     .badge-icon {
       font-size: 0.95rem;
       filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));

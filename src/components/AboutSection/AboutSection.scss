@@ -1,0 +1,182 @@
+@use "../../styles/global.scss" as global;
+
+.about-section {
+  padding: 100px 0;
+  background: global.$navy;
+  position: relative;
+
+  // Séparateur subtil avec gradient
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.3), transparent);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-content {
+    .section-title {
+      font-size: 2.5rem;
+      color: global.$lightest-slate;
+      margin-bottom: 2rem;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, global.$green, global.$teal);
+        border-radius: 2px;
+      }
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: global.$light-slate;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .tech-showcase {
+      h3 {
+        color: global.$lightest-slate;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+
+        .tech-item {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 1rem;
+          background: rgba(100, 255, 218, 0.05);
+          border: 1px solid rgba(100, 255, 218, 0.2);
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          color: global.$light-slate;
+
+          .tech-icon {
+            font-size: 1.5rem;
+          }
+
+          &:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  .profile-image-container {
+    display: flex;
+    justify-content: center;
+
+    .image-wrapper {
+      position: relative;
+      width: 250px;
+      height: 250px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid global.$green;
+        transition: all 0.3s ease;
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.2), rgba(0, 0, 0, 0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+          box-shadow: 0 20px 40px rgba(100, 255, 218, 0.3);
+        }
+
+        .image-overlay {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 0;
+
+    .container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .about-content {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-text {
+        font-size: 1rem;
+      }
+
+      .tech-showcase {
+        .tech-grid {
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+          gap: 0.8rem;
+
+          .tech-item {
+            padding: 0.8rem;
+            font-size: 0.9rem;
+
+            .tech-icon {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+
+    .profile-image-container {
+      .image-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+}

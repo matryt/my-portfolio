@@ -1,0 +1,293 @@
+@use "../../styles/global.scss" as global;
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  transition: all 0.3s ease;
+  
+  // États de visibilité
+  &.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideDown 0.8s ease-out;
+  }
+
+  &.scrolled {
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+  }
+
+  .nav-logo {
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: global.$green;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: global.$lightest-slate;
+      }
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center; // Assure l'alignement vertical
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+
+    .nav-item {
+      display: flex;
+      align-items: center; // Alignement vertical pour chaque item
+
+      .nav-link, .nav-button {
+        color: global.$light-slate;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        position: relative;
+        transition: all 0.3s ease;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        display: flex;
+        align-items: center; // Alignement vertical du texte
+        height: 40px; // Hauteur fixe pour uniformité
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 8px; // Ajusté pour être cohérent avec la hauteur fixe
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: global.$green;
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          color: global.$green;
+
+          &::after {
+            width: 100%;
+          }
+        }
+
+        &.active {
+          color: global.$green;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      .nav-cta {
+        background: transparent;
+        border: 1px solid global.$green;
+        border-radius: 4px;
+        padding: 0.4rem 0.8rem; // Réduit le padding
+        color: global.$green;
+        font-weight: 500;
+        font-size: 0.85rem; // Légèrement plus petit
+        transition: all 0.3s ease;
+        height: 32px; // Hauteur réduite
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+          background: rgba(100, 255, 218, 0.1);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
+        }
+      }
+    }
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    gap: 4px;
+
+    span {
+      width: 25px;
+      height: 3px;
+      background: global.$light-slate;
+      transition: all 0.3s ease;
+      transform-origin: center;
+
+      &:nth-child(1) {
+        transform: translateY(0) rotate(0);
+      }
+
+      &:nth-child(2) {
+        opacity: 1;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(0) rotate(0);
+      }
+    }
+
+    &.active span {
+      background: global.$green;
+
+      &:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  .nav-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 25, 47, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-mobile-menu {
+      list-style: none;
+      padding: 2rem 1rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .nav-mobile-item {
+        .nav-mobile-link, .nav-mobile-button {
+          display: block;
+          color: global.$light-slate;
+          text-decoration: none;
+          font-size: 1.1rem;
+          padding: 1rem 0;
+          border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+          transition: all 0.3s ease;
+          background: none;
+          border: none;
+          border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+          cursor: pointer;
+          font-family: inherit;
+          width: 100%;
+          text-align: left;
+
+          &:hover {
+            color: global.$green;
+            padding-left: 1rem;
+          }
+
+          &.active {
+            color: global.$green;
+            border-bottom-color: global.$green;
+          }
+        }
+
+        .nav-mobile-cta {
+          background: transparent;
+          border: 1px solid global.$green;
+          border-radius: 6px;
+          padding: 1rem 1.5rem;
+          color: global.$green;
+          font-weight: 500;
+          text-align: center;
+          margin-top: 1rem;
+
+          &:hover {
+            background: rgba(100, 255, 218, 0.1);
+            padding-left: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .navigation {
+    .nav-container {
+      padding: 0 15px;
+    }
+
+    .nav-menu {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+  }
+}
+
+// Animation d'apparition de la navigation
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
