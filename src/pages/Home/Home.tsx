@@ -31,7 +31,7 @@ const Home: React.FC = () => {
       <ParcoursSection />
 
       {/* Projects Section */}
-      <ProjectsPreviewSection maxProjects={3} />
+      {/* <ProjectsPreviewSection /> */}
     </div>
   );
 };

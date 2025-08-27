@@ -87,9 +87,18 @@ const Navigation: React.FC = () => {
         {/* Menu Desktop */}
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to="/" className={`nav-link ${isHomePage && activeSection === '' ? 'active' : ''}`}>
-              Accueil
-            </Link>
+            {isHomePage ? (
+              <button
+                className={`nav-link nav-button ${activeSection === '' ? 'active' : ''}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                Accueil
+              </button>
+            ) : (
+              <Link to="/" className={`nav-link`}>
+                Accueil
+              </Link>
+            )}
           </li>
           {isHomePage && (
             <>
@@ -121,7 +130,7 @@ const Navigation: React.FC = () => {
           </li>
           <li className="nav-item">
             <a 
-              href="mailto:mathieu.cuvelier@example.com" 
+              href="mailto:hello@mathieucuvelier.fr" 
               className="nav-link nav-cta"
             >
               Contact
@@ -144,13 +153,25 @@ const Navigation: React.FC = () => {
         <div className={`nav-mobile ${isMobileMenuOpen ? 'active' : ''}`}>
           <ul className="nav-mobile-menu">
             <li className="nav-mobile-item">
-              <Link 
-                to="/" 
-                className={`nav-mobile-link ${isHomePage && activeSection === '' ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Accueil
-              </Link>
+              {isHomePage ? (
+                <button
+                  className={`nav-mobile-link nav-mobile-button ${activeSection === '' ? 'active' : ''}`}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Accueil
+                </button>
+              ) : (
+                <Link
+                  to="/"
+                  className={`nav-mobile-link ${activeSection === '' ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Accueil
+                </Link>
+              )}
             </li>
             {isHomePage && (
               <>
@@ -183,7 +204,7 @@ const Navigation: React.FC = () => {
             </li>
             <li className="nav-mobile-item">
               <a 
-                href="mailto:mathieu.cuvelier@example.com" 
+                href="mailto:hello@mathieucuvelier.fr" 
                 className="nav-mobile-link nav-mobile-cta"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

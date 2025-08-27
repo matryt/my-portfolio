@@ -19,7 +19,29 @@ const Projects: React.FC = () => {
   }, []); 
 
   if (loading) {
-    return <div className="loading-message">Chargement des projets...</div>;
+    return (
+      <div className="projects-page">
+        <h1 className="page-title">Mes Projets</h1>
+        <div className="projects-grid">
+          {/* Placeholders skeleton pendant le chargement */}
+          {Array.from({ length: 6 }, (_, idx) => (
+            <div key={idx} className="project-card skeleton">
+              <div className="skeleton-image"></div>
+              <div className="project-content">
+                <div className="skeleton-title"></div>
+                <div className="skeleton-description"></div>
+                <div className="skeleton-description short"></div>
+                <div className="skeleton-technologies">
+                  <div className="skeleton-tech"></div>
+                  <div className="skeleton-tech"></div>
+                  <div className="skeleton-tech"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (

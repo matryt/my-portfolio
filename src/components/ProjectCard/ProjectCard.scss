@@ -30,6 +30,19 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
+  background-color: rgba(100, 255, 218, 0.05); // Couleur de fond pendant le chargement
+  transition: opacity 0.3s ease;
+
+  &.loading {
+    opacity: 0.7;
+    background: linear-gradient(90deg, rgba(100, 255, 218, 0.05) 25%, rgba(100, 255, 218, 0.1) 50%, rgba(100, 255, 218, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 .project-content {
@@ -82,4 +95,13 @@
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

@@ -1,53 +1,14 @@
 @use "../../styles/global.scss" as global;
 
 .projects-preview-section {
-  padding: 100px 0;
+  padding: 0px 0 50px 0px;
   background: global.$navy;
   position: relative;
-
-  // Séparateur subtil avec gradient
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.3), transparent);
-  }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-
-  .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: global.$lightest-slate;
-    margin-bottom: 3rem;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, global.$green, global.$teal);
-      border-radius: 2px;
-    }
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
   }
 
   .view-all-container {
@@ -74,22 +35,9 @@
   }
 }
 
-// Responsive Design
-@media (max-width: 768px) {
-  .projects-preview-section {
-    .projects-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
 @media (max-width: 480px) {
   .projects-preview-section {
     padding: 60px 0;
-
-    .section-title {
-      font-size: 2rem;
-    }
 
     .view-all-container {
       .view-all-button {

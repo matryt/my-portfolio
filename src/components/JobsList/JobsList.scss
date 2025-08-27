@@ -1,4 +1,6 @@
 .jobs-section {
+  min-height: 400px; // Réserve l'espace pendant le chargement
+  
   h2 {
     font-size: 1.5rem;
     color: #233554;
@@ -27,6 +29,17 @@
     font-size: 1.2rem;
     color: #233554;
     margin-bottom: 0.5rem;
+    
+    .company-link {
+      color: #38b2ac;
+      text-decoration: none;
+      transition: color 0.2s;
+      
+      &:hover {
+        color: #4f8cff;
+        text-decoration: underline;
+      }
+    }
   }
   p {
     color: #8892b0;
@@ -35,5 +48,48 @@
   span {
     font-size: 0.95rem;
     color: #38b2ac;
+  }
+
+  // Skeleton loading styles
+  &.skeleton {
+    .skeleton-title,
+    .skeleton-text,
+    .skeleton-date {
+      background: linear-gradient(90deg, #e2e8f0 25%, #f7fafc 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+      border-radius: 4px;
+    }
+
+    .skeleton-title {
+      height: 1.4rem;
+      width: 70%;
+      margin-bottom: 0.5rem;
+    }
+
+    .skeleton-text {
+      height: 1rem;
+      width: 100%;
+      margin-bottom: 0.3rem;
+
+      &.short {
+        width: 60%;
+      }
+    }
+
+    .skeleton-date {
+      height: 0.95rem;
+      width: 40%;
+      margin-top: 0.2rem;
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }

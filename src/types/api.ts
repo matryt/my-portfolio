@@ -42,4 +42,5 @@ export interface JobItem {
   order?: number;
   company: string;
   title: string;
+  companyUrl?: string;
 }
