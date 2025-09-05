@@ -1,0 +1,81 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "experience": "Parcours"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis Mathieu Cuvelier.",
+    "tagline": "Étudiant ingénieur et développeur Full Stack chez Docaposte.",
+    "description": "En quatrième année à Polytech Nice-Sophia, je combine ma passion pour le développement logiciel avec une expérience pratique en alternance pour concevoir et créer des applications web robustes et innovantes.",
+    "viewProjects": "Voir mes projets",
+    "discover": "Découvrir"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "description": "Actuellement en quatrième année d'école d'ingénieur à Polytech Nice-Sophia dans la filière \"Systèmes d'Information\", je suis également développeur Full Stack en alternance chez Docaposte.",
+    "techTitle": "Technologies que j'utilise au quotidien :"
+  },
+  "experience": {
+    "title": "Mon parcours"
+  },
+  "projectDetail": {
+    "loading": "Chargement du projet...",
+    "screenshots": "Captures d'écran",
+    "context": "Contexte et fonctionnalités",
+    "problems": "Problèmes et solutions",
+    "learned": "Ce que j'ai appris",
+    "technologies": "Technologies utilisées",
+    "links": "Liens du projet",
+    "github": "Voir sur GitHub",
+    "demo": "Voir la démo",
+    "collaborators": "Co-créateurs"
+  },
+  "badges": {
+    "statusLabel": "État",
+    "typeLabel": "Type",
+    "modeLabel": "Mode",
+    "collaborative": "Collaboratif",
+    "statusTitle": "État du projet",
+    "typeTitle": "Type de projet",
+    "modeTitle": "Mode de réalisation",
+    "status": {
+      "inProgress": "En cours",
+      "completed": "Terminé",
+      "paused": "En pause",
+      "cancelled": "Prototype - en l'état",
+      "waitingUpdate": "Partiellement fonctionnel - À actualiser"
+    },
+    "type": {
+      "personal": "Projet personnel",
+      "school": "Projet scolaire"
+    }
+  },
+  "education": {
+    "title": "🎓 Éducation"
+  },
+  "jobs": {
+    "title": "💼 Expérience professionnelle",
+    "since": "Depuis"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English"
+  }
+  ,
+  "months": {
+    "1": "Janvier",
+    "2": "Février",
+    "3": "Mars",
+    "4": "Avril",
+    "5": "Mai",
+    "6": "Juin",
+    "7": "Juillet",
+    "8": "Août",
+    "9": "Septembre",
+    "10": "Octobre",
+    "11": "Novembre",
+    "12": "Décembre"
+  }
+}

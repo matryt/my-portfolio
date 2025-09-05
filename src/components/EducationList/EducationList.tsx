@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
-import { fetchEducationItems } from "../../api";
+import { useTranslation } from "react-i18next";
+import { useEducation } from "../../hooks/useApi";
 import type { EducationItem } from "../../types/api";
+import { splitMultiLineText } from "../../utils/textUtils";
 import "./EducationList.scss";
 
 export default function EducationList() {
-  const [education, setEducation] = useState<EducationItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchEducationItems().then((educationData) => {
-      setEducation(educationData);
-      setIsLoading(false);
-    });
-  }, []);
+  const { education, loading: isLoading } = useEducation();
+  const { t } = useTranslation();
 
   return (
     <section className="education-section">
-      <h2>🎓 Éducation</h2>
+      <h2>{t('education.title')}</h2>
       <div className="education-list">
         {isLoading ? (
           // Placeholders pendant le chargement
@@ -31,7 +25,9 @@ export default function EducationList() {
           education.map((item: EducationItem, idx: number) => (
             <div key={item.order ?? idx} className="education-card">
               <h3>{item.school}</h3>
-              <p>{item.description}</p>
+              <div>
+                {splitMultiLineText(item.description || '')}
+              </div>
               <span>
                 {item.start ? `${item.start}` : ''}
                 {item.end && item.start !== item.end ? ` - ${item.end}` : ''}

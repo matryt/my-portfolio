@@ -1,55 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchProjects } from '../../api';
-import type { Project } from '../../types/api';
+import { useTranslation } from 'react-i18next';
+import { useProject } from '../../hooks/useApi';
 import './ProjectDetails.scss';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import ProjectBadges from '../../components/ProjectBadges/ProjectBadges';
+import { splitMultiLineText } from '../../utils/textUtils';
 
 const ProjectDetail: React.FC = () => {
   const { projectName } = useParams<{ projectName: string }>();
   const navigate = useNavigate();
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { t } = useTranslation();
+  
+  // Le hook useProject va chercher le projet par nom avec la langue actuelle
+  const { project, loading } = useProject(projectName || '');
 
+  // Rediriger si le projet n'est pas trouvé après le chargement
   useEffect(() => {
-    const getProject = async () => {
-      const allProjects = await fetchProjects();
-      const foundProject = allProjects.find(
-        (p) => p.name.toLowerCase().replace(/\s+/g, '-') === projectName
-      );
-
-      if (foundProject) {
-        setProject(foundProject);
-      } else {
-        navigate('/projets');
-      }
-      setLoading(false);
-    };
-    getProject();
-  }, [projectName, navigate]);
+    if (!loading && !project && projectName) {
+      navigate('/projets');
+    }
+  }, [loading, project, projectName, navigate]);
 
   if (loading) {
-    return <div className="loading-message">Chargement du projet...</div>;
+    return <div className="loading-message">{t('projectDetail.loading', 'Chargement du projet...')}</div>;
   }
 
   if (!project) {
     return null;
   }
-
-  const splitMultiLineText = (text: string) => {
-   
-    const lines = text
-      .replace(/\\n/g, '\n')  // Remplacer les \n échappés
-      .replace(/<br\s*\/?>/gi, '\n') 
-      .split('\n')
-      .filter(line => line.trim() !== ''); // Supprimer les lignes vides
-  
-    
-    return lines.map((line: string, index: number) => (
-      <p key={index}>{line.trim()}</p>
-    ));
-  };
 
   return (
     <div className="project-detail-page">
@@ -64,7 +43,7 @@ const ProjectDetail: React.FC = () => {
           {/* Affichage des partenaires */}
           {project.partners && project.partners.length > 0 && (
             <div className="project-partners">
-              <h4>Co-créateurs :</h4>
+              <h4>{t('projectDetail.collaborators')}:</h4>
               <ul>
                 {project.partners.map((partner) => (
                   <li key={partner.username}>
@@ -94,26 +73,26 @@ const ProjectDetail: React.FC = () => {
         <div className="summary-text">
           {project.longDescription && (
             <div className="info-block">
-              <h3>Contexte et fonctionnalités</h3>
+              <h3>{t('projectDetail.context')}</h3>
               {splitMultiLineText(project.longDescription)}
             </div>
           )}
           {project.problemsAndSolutions && (
             <div className="info-block">
-              <h3>Problèmes et solutions</h3>
+              <h3>{t('projectDetail.problems')}</h3>
               {splitMultiLineText(project.problemsAndSolutions)}
             </div>
           )}
           {project.whatILearned && (
             <div className="info-block">
-              <h3>Ce que j'ai appris</h3>
+              <h3>{t('projectDetail.learned')}</h3>
               {splitMultiLineText(project.whatILearned)}
             </div>
           )}
         </div>
         <aside className="summary-sidebar">
           <div className="sidebar-block">
-            <h3>Technologies utilisées</h3>
+            <h3>{t('projectDetail.technologies')}</h3>
             <div className="tech-list">
               {project.technologies.map((tech) => (
                 <span key={tech} className="tech-badge">{tech}</span>
@@ -121,16 +100,16 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
           <div className="sidebar-block">
-            <h3>Liens du projet</h3>
+            <h3>{t('projectDetail.links')}</h3>
             <div className="project-links">
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-button">
-                  Voir sur GitHub
+                  {t('projectDetail.github')}
                 </a>
               )}
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" className="link-button">
-                  Voir la démo
+                  {t('projectDetail.demo')}
                 </a>
               )}
             </div>

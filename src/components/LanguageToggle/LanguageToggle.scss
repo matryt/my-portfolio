@@ -1,0 +1,43 @@
+@use "../../styles/global.scss" as global;
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  &:hover {
+    border-color: global.$green;
+    background: rgba(100, 255, 218, 0.1);
+  }
+
+  .lang-option {
+    color: global.$light-slate;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &.active {
+      color: global.$green;
+    }
+  }
+
+  .separator {
+    color: global.$slate;
+    margin: 0 8px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    
+    .separator {
+      margin: 0 6px;
+    }
+  }
+}

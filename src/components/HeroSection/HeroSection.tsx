@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { useTranslation } from 'react-i18next';
 import './HeroSection.scss';
 
 interface HeroSectionProps {
@@ -9,6 +10,7 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToAbout }) => {
   const heroRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -73,24 +75,22 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToAbout }) => {
         </div>
       </div>
       <div className="hero-content">
-        <h1 className="name-title">Bonjour, je suis Mathieu Cuvelier.</h1>
+        <h1 className="name-title">{t('hero.greeting')}</h1>
         <h2 className="tagline-title">
-          Étudiant ingénieur et développeur Full Stack chez Docaposte.
+          {t('hero.tagline')}
         </h2>
         <p className="description">
-          En quatrième année à Polytech Nice-Sophia, je combine ma passion pour
-          le développement logiciel avec une expérience pratique en alternance
-          pour concevoir et créer des applications web robustes et innovantes.
+          {t('hero.description')}
         </p>
         <Link to="/projets" className="cta-button">
-          <span>Voir mes projets</span>
+          <span>{t('hero.viewProjects')}</span>
           <div className="button-glow"></div>
         </Link>
       </div>
       
       {/* Indicateur de scroll */}
       <div className="scroll-indicator" onClick={onScrollToAbout}>
-        <div className="scroll-text">Découvrir</div>
+        <div className="scroll-text">{t('hero.discover')}</div>
         <div className="scroll-arrow">
           <div className="chevron"></div>
           <div className="chevron"></div>

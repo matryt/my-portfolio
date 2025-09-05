@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useTranslation } from 'react-i18next';
 import './ProjectBadges.scss';
 
 interface Badge {
@@ -20,16 +21,17 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
   isCollaborative 
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   // Fonctions pour traduire les badges avec icônes
   const getStatusBadge = (status: string | undefined): Badge | null => {
     if (!status) return null;
     const statusConfig: Record<string, Badge> = {
-      'in-progress': { text: 'En cours', icon: '🔄', className: 'status-in-progress' },
-      'completed': { text: 'Terminé', icon: '✅', className: 'status-completed' },
-      'paused': { text: 'En pause', icon: '⏸️', className: 'status-paused' },
-      'cancelled': { text: 'Prototype - en l\'état', icon: '⛔​​', className: 'status-cancelled' },
-      'waiting-maj': { text: 'Partiellement fonctionnel - À actualiser', icon: '⏳', className: 'status-waiting-maj' }
+      'in-progress': { text: t('badges.status.inProgress'), icon: '🔄', className: 'status-in-progress' },
+      'completed': { text: t('badges.status.completed'), icon: '✅', className: 'status-completed' },
+      'paused': { text: t('badges.status.paused'), icon: '⏸️', className: 'status-paused' },
+      'cancelled': { text: t('badges.status.cancelled'), icon: '⛔​​', className: 'status-cancelled' },
+      'waiting-maj': { text: t('badges.status.waitingUpdate'), icon: '⏳', className: 'status-waiting-maj' }
     };
     return statusConfig[status] || { text: status, icon: '', className: 'status-default' };
   };
@@ -37,8 +39,8 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
   const getTypeBadge = (type: "personal" | "school" | undefined): Badge | null => {
     if (!type) return null;
     const typeConfig: Record<string, Badge> = {
-      'personal': { text: 'Projet personnel', icon: '👤', className: 'type-personal' },
-      'school': { text: 'Projet scolaire', icon: '🎓', className: 'type-school' }
+      'personal': { text: t('badges.type.personal'), icon: '👤', className: 'type-personal' },
+      'school': { text: t('badges.type.school'), icon: '🎓', className: 'type-school' }
     };
     return typeConfig[type] || { text: type, icon: '', className: 'type-default' };
   };
@@ -125,24 +127,24 @@ const ProjectBadges: React.FC<ProjectBadgesProps> = ({
   return (
     <div className="project-badges" ref={containerRef}>
       {statusBadge && (
-        <span className={`meta-badge ${statusBadge.className}`} title="État du projet">
-          <span className="badge-category">État:</span>
+        <span className={`meta-badge ${statusBadge.className}`} title={t('badges.statusTitle')}>
+          <span className="badge-category">{t('badges.statusLabel')}:</span>
           <span className="badge-icon">{statusBadge.icon}</span>
           {statusBadge.text}
         </span>
       )}
       {typeBadge && (
-        <span className={`meta-badge ${typeBadge.className}`} title="Type de projet">
-          <span className="badge-category">Type:</span>
+        <span className={`meta-badge ${typeBadge.className}`} title={t('badges.typeTitle')}>
+          <span className="badge-category">{t('badges.typeLabel')}:</span>
           <span className="badge-icon">{typeBadge.icon}</span>
           {typeBadge.text}
         </span>
       )}
       {isCollaborative && (
-        <span className="meta-badge type-collaborative" title="Mode de réalisation">
-          <span className="badge-category">Mode:</span>
+        <span className="meta-badge type-collaborative" title={t('badges.modeTitle')}>
+          <span className="badge-category">{t('badges.modeLabel')}:</span>
           <span className="badge-icon">🤝</span>
-          Collaboratif
+          {t('badges.collaborative')}
         </span>
       )}
     </div>

@@ -4,9 +4,10 @@ import type { Project, EducationItem, JobItem } from '../types/api';
 // Assurez-vous que cette URL est correcte et que votre API est bien lancée
 const API_BASE_URL = 'http://localhost:21000'; 
 
-export const fetchProjects = async (): Promise<Project[]> => {
+export const fetchProjects = async (lang: 'fr' | 'en' = 'fr'): Promise<Project[]> => {
+  console.log(lang);
   try {
-    const response = await axios.get<Project[]>(`${API_BASE_URL}/projects`);
+    const response = await axios.get<Project[]>(`${API_BASE_URL}/projects?lang=${lang}`);
     return response.data;
   } catch (error) {
     console.error("Failed to fetch projects:", error);
@@ -14,9 +15,9 @@ export const fetchProjects = async (): Promise<Project[]> => {
   }
 };
 
-export const fetchProjectByName = async (projectName: string): Promise<Project | null> => {
+export const fetchProjectByName = async (projectName: string, lang: 'fr' | 'en' = 'fr'): Promise<Project | null> => {
   try {
-    const response = await axios.get<Project[]>(`${API_BASE_URL}/projects`);
+    const response = await axios.get<Project[]>(`${API_BASE_URL}/projects?lang=${lang}`);
     const project = response.data.find((p: Project) => p.name === projectName);
     return project || null;
   } catch (error) {
@@ -26,9 +27,9 @@ export const fetchProjectByName = async (projectName: string): Promise<Project |
 };
 
 
-export const fetchEducationItems = async (): Promise<EducationItem[]> => {
+export const fetchEducationItems = async (lang: 'fr' | 'en' = 'fr'): Promise<EducationItem[]> => {
   try {
-    const response = await axios.get<EducationItem[]>(`${API_BASE_URL}/education`);
+    const response = await axios.get<EducationItem[]>(`${API_BASE_URL}/education?lang=${lang}`);
     return response.data;
   } catch (error) {
     console.error("Failed to fetch education items:", error);
@@ -36,9 +37,9 @@ export const fetchEducationItems = async (): Promise<EducationItem[]> => {
   }
 };
 
-export const fetchJobs = async (): Promise<JobItem[]> => {
+export const fetchJobs = async (lang: 'fr' | 'en' = 'fr'): Promise<JobItem[]> => {
   try {
-    const response = await axios.get<JobItem[]>(`${API_BASE_URL}/jobs`);
+    const response = await axios.get<JobItem[]>(`${API_BASE_URL}/jobs?lang=${lang}`);
     return response.data;
   } catch (error) {
     console.error("Failed to fetch jobs:", error);

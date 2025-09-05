@@ -1,33 +1,25 @@
-import { useEffect, useState } from "react";
-import { fetchJobs } from "../../api";
+import { useTranslation } from "react-i18next";
+import { useJobs } from "../../hooks/useApi";
 import type { JobItem } from "../../types/api";
+import { splitMultiLineText } from "../../utils/textUtils";
 import "./JobsList.scss";
 
 export default function JobsList() {
-  const [jobs, setJobs] = useState<JobItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchJobs().then((jobsData) => {
-      setJobs(jobsData);
-      setIsLoading(false);
-    });
-  }, []);
+  const { jobs, loading: isLoading } = useJobs();
+  const { t } = useTranslation();
 
   const formatDate = (timestamp?: number) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
-    const months = [
-      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-    ];
-    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+    // Les mois sont indexés de 0 à 11, donc on ajoute 1
+    const monthNumber = date.getMonth() + 1;
+    return `${t(`months.${monthNumber}`)} ${date.getFullYear()}`;
   };
 
   const formatDateRange = (start?: number, end?: number) => {
     if (!start) return '';
-    if (!end || start === end) return "Depuis " + formatDate(start);
-    
+    if (!end || start === end) return t("jobs.since") + " " + formatDate(start);
+
     const startDate = new Date(start);
     const endDate = new Date(end);
     
@@ -44,23 +36,9 @@ export default function JobsList() {
     return `${formatDate(start)} - ${formatDate(end)}`;
   };
 
-  const splitMultiLineText = (text: string) => {
-   
-    const lines = text
-      .replace(/\\n/g, '\n')  // Remplacer les \n échappés
-      .replace(/<br\s*\/?>/gi, '\n') 
-      .split('\n')
-      .filter(line => line.trim() !== ''); // Supprimer les lignes vides
-  
-    
-    return lines.map((line: string, index: number) => (
-      <p key={index}>{line.trim()}</p>
-    ));
-  };
-
   return (
     <section className="jobs-section">
-      <h2>💼 Expériences professionnelles</h2>
+      <h2>{t('jobs.title')}</h2>
       <div className="jobs-list">
         {isLoading ? (
           // Placeholders pendant le chargement

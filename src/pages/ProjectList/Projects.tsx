@@ -1,27 +1,18 @@
 // src/pages/Projects.tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
-import { fetchProjects } from '../../api';
-import type { Project } from '../../types/api';
+import { useProjects } from '../../hooks/useApi';
 import './Projects.scss';
 
 const Projects: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const getProjects = async () => {
-      const data = await fetchProjects();
-      setProjects(data);
-      setLoading(false);
-    };
-    getProjects();
-  }, []); 
+  const { projects, loading } = useProjects();
+  const { t } = useTranslation();
 
   if (loading) {
     return (
       <div className="projects-page">
-        <h1 className="page-title">Mes Projets</h1>
+        <h1 className="page-title">{t('navigation.projects')}</h1>
         <div className="projects-grid">
           {/* Placeholders skeleton pendant le chargement */}
           {Array.from({ length: 6 }, (_, idx) => (
@@ -46,7 +37,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects-page">
-      <h1 className="page-title">Mes Projets</h1>
+      <h1 className="page-title">{t('navigation.projects')}</h1>
       <div className="projects-grid">
         {projects.map(project => (
           <ProjectCard key={project.name} project={project} />

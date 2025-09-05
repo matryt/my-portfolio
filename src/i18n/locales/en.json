@@ -1,0 +1,80 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience"
+  },
+  "hero": {
+    "greeting": "Hello, I'm Mathieu Cuvelier.",
+    "tagline": "Engineering student and Full Stack developer at Docaposte.",
+    "description": "Currently in my fourth year at Polytech Nice-Sophia, I combine my passion for software development with practical work-study experience to design and create robust and innovative web applications.",
+    "viewProjects": "View my projects",
+    "discover": "Discover"
+  },
+  "about": {
+    "title": "About me",
+    "description": "Currently in my fourth year of engineering school at Polytech Nice-Sophia in the \"Information Systems\" track, I am also a Full Stack developer in work-study at Docaposte.",
+    "techTitle": "Technologies I use daily:"
+  },
+  "experience": {
+    "title": "My experience"
+  },
+  "projectDetail": {
+    "loading": "Loading project...",
+    "screenshots": "Screenshots",
+    "context": "Context and features",
+    "problems": "Problems and solutions",
+    "learned": "What I learned",
+    "technologies": "Technologies used",
+    "links": "Project links",
+    "github": "View on GitHub",
+    "demo": "View demo",
+    "collaborators": "Co-creators"
+  },
+  "badges": {
+    "statusLabel": "Status",
+    "typeLabel": "Type",
+    "modeLabel": "Mode",
+    "collaborative": "Collaborative",
+    "statusTitle": "Project status",
+    "typeTitle": "Project type",
+    "modeTitle": "Development mode",
+    "status": {
+      "inProgress": "In progress",
+      "completed": "Completed",
+      "paused": "Paused",
+      "cancelled": "Prototype - as is",
+      "waitingUpdate": "Partially functional - To be updated"
+    },
+    "type": {
+      "personal": "Personal project",
+      "school": "School project"
+    }
+  },
+  "education": {
+    "title": "🎓 Education"
+  },
+  "jobs": {
+    "title": "💼 Professional experience",
+    "since": "Since"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English"
+  },
+  "months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  }
+}

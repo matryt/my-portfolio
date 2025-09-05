@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageToggle from '../LanguageToggle/LanguageToggle';
 import './Navigation.scss';
 
 const Navigation: React.FC = () => {
@@ -8,6 +10,7 @@ const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   // Détecter le scroll pour changer l'apparence du header et la section active
   useEffect(() => {
@@ -92,11 +95,11 @@ const Navigation: React.FC = () => {
                 className={`nav-link nav-button ${activeSection === '' ? 'active' : ''}`}
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
-                Accueil
+                {t('navigation.home')}
               </button>
             ) : (
               <Link to="/" className={`nav-link`}>
-                Accueil
+                {t('navigation.home')}
               </Link>
             )}
           </li>
@@ -107,7 +110,7 @@ const Navigation: React.FC = () => {
                   onClick={() => scrollToSection('about')} 
                   className={`nav-link nav-button ${activeSection === 'about' ? 'active' : ''}`}
                 >
-                  À propos
+                  {t('navigation.about')}
                 </button>
               </li>
               <li className="nav-item">
@@ -115,7 +118,7 @@ const Navigation: React.FC = () => {
                   onClick={() => scrollToSection('parcours')} 
                   className={`nav-link nav-button ${activeSection === 'parcours' ? 'active' : ''}`}
                 >
-                  Parcours
+                  {t('navigation.experience')}
                 </button>
               </li>
             </>
@@ -125,7 +128,7 @@ const Navigation: React.FC = () => {
               to="/projets" 
               className={`nav-link ${location.pathname === '/projets' ? 'active' : ''}`}
             >
-              Projets
+              {t('navigation.projects')}
             </Link>
           </li>
           <li className="nav-item">
@@ -135,6 +138,9 @@ const Navigation: React.FC = () => {
             >
               Contact
             </a>
+          </li>
+          <li className="nav-item">
+            <LanguageToggle />
           </li>
         </ul>
 
@@ -161,7 +167,7 @@ const Navigation: React.FC = () => {
                     setIsMobileMenuOpen(false);
                   }}
                 >
-                  Accueil
+                  {t('navigation.home')}
                 </button>
               ) : (
                 <Link
@@ -169,7 +175,7 @@ const Navigation: React.FC = () => {
                   className={`nav-mobile-link ${activeSection === '' ? 'active' : ''}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Accueil
+                  {t('navigation.home')}
                 </Link>
               )}
             </li>

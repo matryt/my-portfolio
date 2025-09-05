@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Carousel from '../Carousel/Carousel';
 import './ImageGallery.scss';
 
@@ -7,9 +8,13 @@ interface ImageGalleryProps {
   title?: string;
 }
 
-const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title = "Captures d'écran" }) => {
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const { t } = useTranslation();
+
+  // Utiliser la traduction si aucun titre n'est fourni
+  const displayTitle = title || t('projectDetail.screenshots');
 
   // Détection de la taille d'écran
   useEffect(() => {
@@ -24,7 +29,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title = "Captures d
 
   return (
     <section className="image-gallery">
-      <h3>{title}</h3>
+      <h3>{displayTitle}</h3>
       {isMobile ? (
         <>
           {/* Vignettes pour mobile */}
