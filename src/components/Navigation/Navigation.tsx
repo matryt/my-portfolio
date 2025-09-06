@@ -186,7 +186,7 @@ const Navigation: React.FC = () => {
                     onClick={() => scrollToSection('about')} 
                     className={`nav-mobile-link nav-mobile-button ${activeSection === 'about' ? 'active' : ''}`}
                   >
-                    À propos
+                    {t('navigation.about')}
                   </button>
                 </li>
                 <li className="nav-mobile-item">
@@ -194,7 +194,7 @@ const Navigation: React.FC = () => {
                     onClick={() => scrollToSection('parcours')} 
                     className={`nav-mobile-link nav-mobile-button ${activeSection === 'parcours' ? 'active' : ''}`}
                   >
-                    Parcours
+                    {t('navigation.experience')}
                   </button>
                 </li>
               </>
@@ -205,7 +205,7 @@ const Navigation: React.FC = () => {
                 className={`nav-mobile-link ${location.pathname === '/projets' ? 'active' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Projets
+                {t('navigation.projects')}
               </Link>
             </li>
             <li className="nav-mobile-item">
@@ -216,6 +216,11 @@ const Navigation: React.FC = () => {
               >
                 Contact
               </a>
+            </li>
+            <li className="nav-mobile-item">
+              <div className="nav-mobile-language">
+                <LanguageToggle />
+              </div>
             </li>
           </ul>
         </div>

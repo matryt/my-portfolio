@@ -54,6 +54,7 @@ interface LazyImageState {
  */
 export const useLazyProjectImage = (
   project: ProjectData,
+  lang: 'fr' | 'en' = 'fr', // Ajout du paramètre langue
   options: UseLazyProjectImageOptions = {}
 ): LazyImageState & { ref: React.RefObject<HTMLElement> } => {
   const {
@@ -93,7 +94,7 @@ export const useLazyProjectImage = (
 
     // Import dynamique de la fonction API
     import('../api').then(({ fetchProjectImages }) => {
-      return fetchProjectImages(project.name);
+      return fetchProjectImages(project.name, lang); // Utilisation de la langue
     })
     .then(data => {
       setImageState(prev => ({
@@ -112,7 +113,7 @@ export const useLazyProjectImage = (
         hasError: true,
       }));
     });
-  }, [shouldLoad, project.name, project.hasImage, project.hasScreenshots]);
+  }, [shouldLoad, project.name, project.hasImage, project.hasScreenshots, lang]); // Ajout de lang dans les dépendances
 
   // Mettre à jour l'état quand la visibilité change
   useEffect(() => {
@@ -147,9 +148,10 @@ export const useLazyProjectImage = (
  */
 export const useLazyScreenshots = (
   project: ProjectData,
+  lang: 'fr' | 'en' = 'fr', // Ajout du paramètre langue
   options: UseLazyProjectImageOptions = {}
 ) => {
-  const result = useLazyProjectImage(project, {
+  const result = useLazyProjectImage(project, lang, { // Correction: passage de la langue
     ...options,
     // Pour les screenshots, on peut être moins anticipé
     rootMargin: options.rootMargin || '50px',

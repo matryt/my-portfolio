@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLazyProjectImage } from '../../hooks/useLazyProjectImage';
+import { useLanguage } from '../../contexts/LanguageContext'; // Import du contexte langue
 import type { ProjectData } from '../../types/api';
 import './LazyProjectImage.scss';
 
@@ -24,6 +25,7 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
   lazyOptions = {}
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { language } = useLanguage(); // Utilisation du contexte langue
   
   // Lazy loading avec intersection observer
   const {
@@ -32,7 +34,7 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
     isLoading,
     hasError,
     isVisible
-  } = useLazyProjectImage(project, {
+  } = useLazyProjectImage(project, language, { // Passage de la langue
     rootMargin: '50px',
     threshold: 0.1,
     ...lazyOptions,

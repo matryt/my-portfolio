@@ -146,31 +146,6 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
         </aside>
-        <aside className="summary-sidebar">
-          <div className="sidebar-block">
-            <h3>{t('projectDetail.technologies')}</h3>
-            <div className="tech-list">
-              {project.technologies?.map((tech) => (
-                <span key={tech} className="tech-badge">{tech}</span>
-              ))}
-            </div>
-          </div>
-          <div className="sidebar-block">
-            <h3>{t('projectDetail.links')}</h3>
-            <div className="project-links">
-              {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-button">
-                  {t('projectDetail.github')}
-                </a>
-              )}
-              {project.demo && (
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="link-button">
-                  {t('projectDetail.demo')}
-                </a>
-              )}
-            </div>
-          </div>
-        </aside>
       </section>
     </div>
   );
