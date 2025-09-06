@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '../../hooks/useApi';
+import { useProjectImage } from '../../hooks/useProjectImages';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './ProjectDetails.scss';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import ProjectBadges from '../../components/ProjectBadges/ProjectBadges';
@@ -11,9 +13,25 @@ const ProjectDetail: React.FC = () => {
   const { projectName } = useParams<{ projectName: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { language } = useLanguage();
   
   // Le hook useProject va chercher le projet par nom avec la langue actuelle
   const { project, loading } = useProject(projectName || '');
+  
+  // Hook pour charger les images séparément
+  const { imageData, isLoadingImage, hasScreenshots } = useProjectImage(
+    project || { 
+      hasImage: false, 
+      hasScreenshots: false, 
+      name: '', 
+      description: '', 
+      github: '', 
+      displayed: false, 
+      technologies: [],
+      partners: []
+    }, 
+    language
+  );
 
   // Rediriger si le projet n'est pas trouvé après le chargement
   useEffect(() => {
@@ -62,9 +80,22 @@ const ProjectDetail: React.FC = () => {
           )}
       </header>
       
-      {/* Galerie d'images - Adaptive */}
-      {project.screenshots && project.screenshots.length > 0 && (
-        <ImageGallery images={project.screenshots} />
+      {/* Galerie d'images - Adaptive avec nouveau système */}
+      {hasScreenshots && (
+        <div className="image-gallery-container">
+          {isLoadingImage ? (
+            <div className="gallery-loading">
+              <div className="spinner"></div>
+              <p>{t('projectDetail.loadingImages', 'Chargement des images...')}</p>
+            </div>
+          ) : imageData?.screenshots && imageData.screenshots.length > 0 ? (
+            <ImageGallery images={imageData.screenshots} />
+          ) : (
+            <div className="gallery-placeholder">
+              <p>{t('projectDetail.noImages', 'Images non disponibles')}</p>
+            </div>
+          )}
+        </div>
       )}
 
       <hr className="divider" />
@@ -94,7 +125,32 @@ const ProjectDetail: React.FC = () => {
           <div className="sidebar-block">
             <h3>{t('projectDetail.technologies')}</h3>
             <div className="tech-list">
-              {project.technologies.map((tech) => (
+              {project.technologies?.map((tech) => (
+                <span key={tech} className="tech-badge">{tech}</span>
+              ))}
+            </div>
+          </div>
+          <div className="sidebar-block">
+            <h3>{t('projectDetail.links')}</h3>
+            <div className="project-links">
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-button">
+                  {t('projectDetail.github')}
+                </a>
+              )}
+              {project.demo && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="link-button">
+                  {t('projectDetail.demo')}
+                </a>
+              )}
+            </div>
+          </div>
+        </aside>
+        <aside className="summary-sidebar">
+          <div className="sidebar-block">
+            <h3>{t('projectDetail.technologies')}</h3>
+            <div className="tech-list">
+              {project.technologies?.map((tech) => (
                 <span key={tech} className="tech-badge">{tech}</span>
               ))}
             </div>

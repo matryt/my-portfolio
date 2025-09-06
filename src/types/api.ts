@@ -11,20 +11,37 @@ export type Status =
   | 'cancelled';
 
 export interface Project {
+  id?: string;
   partners: PersonDetails[];
   description: string;
   github: string;
-  image: string;
+  image?: string; // Optionnel car sera récupéré séparément
   displayed: boolean;
   technologies: string[];
   name: string;
   demo?: string;
   status?: Status;
-  screenshots?: string[];
+  screenshots?: string[]; // Sera récupéré séparément
   whatILearned?: string;
   longDescription?: string;
   problemsAndSolutions?: string;
   projectType?: "personal" | "school";
+  order?: number;
+  hasImage?: boolean; // Indique si le projet a une image
+  hasScreenshots?: boolean; // Indique si le projet a des screenshots
+}
+
+// Type pour les données sans images (récupérées via l'endpoint principal)
+export interface ProjectData extends Omit<Project, 'image' | 'screenshots'> {
+  hasImage?: boolean;
+  hasScreenshots?: boolean;
+}
+
+// Type pour les réponses d'images
+export interface ProjectImages {
+  id: string;
+  image?: string;
+  screenshots?: string[];
 }
 
 export interface EducationItem {

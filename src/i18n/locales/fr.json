@@ -30,7 +30,9 @@
     "links": "Liens du projet",
     "github": "Voir sur GitHub",
     "demo": "Voir la démo",
-    "collaborators": "Co-créateurs"
+    "collaborators": "Co-créateurs",
+    "noImages": "Images non disponibles",
+    "loadingImages": "Chargement des images..."
   },
   "badges": {
     "statusLabel": "État",

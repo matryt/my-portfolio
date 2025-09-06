@@ -1,12 +1,12 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import { fetchProjects, fetchEducationItems, fetchJobs } from '../api';
 import { useEffect, useState } from 'react';
-import type { Project, EducationItem, JobItem } from '../types/api';
+import type { ProjectData, EducationItem, JobItem } from '../types/api';
 
 // Hook pour fetch des projets avec la langue actuelle
 export const useProjects = () => {
   const { language } = useLanguage();
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -90,7 +90,7 @@ export const useJobs = () => {
 // Hook pour fetch un projet spécifique avec la langue actuelle
 export const useProject = (projectName: string) => {
   const { language } = useLanguage();
-  const [project, setProject] = useState<Project | null>(null);
+  const [project, setProject] = useState<ProjectData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
