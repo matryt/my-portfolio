@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import AboutSection from '../../components/AboutSection/AboutSection';
 import ParcoursSection from '../../components/ParcoursSection/ParcoursSection';
-import ProjectsPreviewSection from '../../components/ProjectsPreviewSection/ProjectsPreviewSection';
 import './Home.scss';
 
 const Home: React.FC = () => {

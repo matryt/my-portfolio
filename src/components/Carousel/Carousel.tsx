@@ -2,13 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Carousel.scss";
 interface CarouselProps {
   images: string[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
 }
 const Carousel: React.FC<CarouselProps> = ({
   images,
-  autoPlay = true,
-  autoPlayInterval = 3000,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
