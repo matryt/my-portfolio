@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 import Home from './pages/Home/Home';
 import ProjectDetail from './pages/ProjectDetails/ProjectDetails';
 import Projects from './pages/ProjectList/Projects';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projets/:projectName" element={<ProjectDetail />} />
           <Route path="/projets" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

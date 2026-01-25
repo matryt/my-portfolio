@@ -132,12 +132,9 @@ const Navigation: React.FC = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <a 
-              href="mailto:hello@mathieucuvelier.fr" 
-              className="nav-link nav-cta"
-            >
+            <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>
               Contact
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <LanguageToggle />

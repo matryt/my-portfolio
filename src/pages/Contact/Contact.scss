@@ -1,0 +1,107 @@
+@use "sass:color";
+@use "../../styles/global.scss" as global;
+
+.contact-page {
+  padding: 100px 0;
+  background: global.$navy;
+  color: global.$light-slate;
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: global.$lightest-slate;
+    margin-bottom: 2rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    a {
+      color: global.$green;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      border: 2px solid global.$green;
+      border-radius: 8px;
+      background: transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: global.$navy;
+        background: global.$green;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(100, 255, 218, 0.4);
+      }
+    }
+  }
+
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+
+    label {
+      font-weight: bold;
+      color: global.$lightest-slate;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      border-radius: 4px;
+      background: transparent;
+      color: global.$light-slate;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: global.$green;
+        outline: none;
+      }
+    }
+
+    button {
+      padding: 1rem 2rem;
+      background: transparent;
+      color: global.$green;
+      border: 2px solid global.$green;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: global.$green;
+        color: global.$navy;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.5);
+      }
+
+      &:active {
+        background: global.$green;
+        color: global.$navy;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+      }
+    }
+
+    .success {
+      color: global.$green;
+      text-align: center;
+    }
+
+    .error {
+      color: global.$pink;
+      text-align: center;
+    }
+  }
+}

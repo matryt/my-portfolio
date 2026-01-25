@@ -78,5 +78,17 @@
     "10": "October",
     "11": "November",
     "12": "December"
+  },
+  "contact": {
+    "title": "Contact me",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message has been sent successfully!",
+    "error": "An error occurred.",
+    "errorSubmit": "Unable to submit the form."
   }
 }
