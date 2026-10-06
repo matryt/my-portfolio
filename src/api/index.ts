@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { ProjectData, ProjectImages, EducationItem, JobItem } from '../types/api';
 
 // Assurez-vous que cette URL est correcte et que votre API est bien lancée
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:21000'; 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api-portfolio.mathieucuvelier.fr'; 
 
 export const fetchProjects = async (lang: 'fr' | 'en' = 'fr'): Promise<ProjectData[]> => {
   try {
