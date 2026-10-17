@@ -1,74 +1,87 @@
+@use "../../styles/global.scss" as global;
+
 .jobs-section {
-  min-height: 400px; // Réserve l'espace pendant le chargement
+  width: 100%;
   
   h2 {
-    font-size: 1.5rem;
-    color: #233554;
+    font-family: global.$font-mono;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: global.$label-gray;
     margin-bottom: 1.5rem;
+    font-weight: 400;
   }
 }
 
 .jobs-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
 .job-card {
-  padding: 1.2rem 1rem;
-  border-left: 4px solid #38b2ac;
-  background: #f7f9fc;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(100,255,218,0.07);
-  transition: box-shadow 0.2s, border-left-color 0.2s;
-  &:hover {
-    box-shadow: 0 4px 16px rgba(100,255,218,0.13);
-    border-left-color: #4f8cff;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid global.$border;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &:first-child {
+    border-top: 1px solid global.$border;
   }
+
   h3 {
-    font-size: 1.2rem;
-    color: #233554;
-    margin-bottom: 0.5rem;
-    
+    font-family: global.$font-sans;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: global.$ink;
+    margin: 0;
+
     .company-link {
-      color: #38b2ac;
-      text-decoration: none;
-      transition: color 0.2s;
-      
+      color: global.$ink;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 600;
+      transition: color 0.15s ease;
+
       &:hover {
-        color: #4f8cff;
-        text-decoration: underline;
+        color: global.$accent;
       }
     }
   }
+
   p {
-    color: #8892b0;
-    margin-bottom: 0.3rem;
-  }
-  span {
+    color: global.$text-secondary;
     font-size: 0.95rem;
-    color: #38b2ac;
+    line-height: 1.5;
+    margin: 0.25rem 0 0 0;
   }
 
-  // Skeleton loading styles
+  span {
+    font-family: global.$font-mono;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: global.$label-gray;
+    margin-top: 0.25rem;
+  }
+
   &.skeleton {
     .skeleton-title,
     .skeleton-text,
     .skeleton-date {
-      background: linear-gradient(90deg, #e2e8f0 25%, #f7fafc 50%, #e2e8f0 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite;
-      border-radius: 4px;
+      background: #E2E5E8;
+      border-radius: 2px;
     }
 
     .skeleton-title {
-      height: 1.4rem;
+      height: 1.2rem;
       width: 70%;
       margin-bottom: 0.5rem;
     }
 
     .skeleton-text {
-      height: 1rem;
+      height: 0.95rem;
       width: 100%;
       margin-bottom: 0.3rem;
 
@@ -78,18 +91,9 @@
     }
 
     .skeleton-date {
-      height: 0.95rem;
+      height: 0.85rem;
       width: 40%;
       margin-top: 0.2rem;
     }
-  }
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
   }
 }

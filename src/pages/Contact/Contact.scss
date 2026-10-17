@@ -1,107 +1,81 @@
-@use "sass:color";
 @use "../../styles/global.scss" as global;
 
 .contact-page {
-  padding: 100px 0;
-  background: global.$navy;
-  color: global.$light-slate;
+  padding: 60px 0 100px;
+  background-color: global.$bg;
+  color: global.$ink;
+  max-width: global.$max-width;
+  margin: 0 auto;
+  padding-left: global.$side-margin;
+  padding-right: global.$side-margin;
+  box-sizing: border-box;
 
-  h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: global.$lightest-slate;
-    margin-bottom: 2rem;
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
   }
 
-  .social-links {
+  .contact-left {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    flex-direction: column;
+    gap: 1.5rem;
 
-    a {
-      color: global.$green;
+    h1 {
+      font-size: clamp(38px, 5.5vw, 60px);
       font-weight: 600;
-      font-size: 1.1rem;
-      text-decoration: none;
-      padding: 0.5rem 1.5rem;
-      border: 2px solid global.$green;
-      border-radius: 8px;
-      background: transparent;
-      transition: all 0.3s ease;
+      color: global.$ink;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
 
-      &:hover {
-        color: global.$navy;
-        background: global.$green;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(100, 255, 218, 0.4);
+    .contact-intro {
+      font-size: 1.15rem;
+      color: global.$text-secondary;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+
+      a {
+        color: global.$accent;
+        font-family: global.$font-sans;
+        font-weight: 500;
+        font-size: 1.05rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: color 0.15s ease;
+
+        &:hover {
+          color: global.$accent-hover;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
       }
     }
   }
 
-  .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(100, 255, 218, 0.05);
-    border-radius: 12px;
-    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  .contact-right {
+    width: 100%;
+  }
+}
 
-    label {
-      font-weight: bold;
-      color: global.$lightest-slate;
-    }
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 30px 20px 60px;
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid rgba(100, 255, 218, 0.2);
-      border-radius: 4px;
-      background: transparent;
-      color: global.$light-slate;
-      transition: border-color 0.3s ease;
-
-      &:focus {
-        border-color: global.$green;
-        outline: none;
-      }
-    }
-
-    button {
-      padding: 1rem 2rem;
-      background: transparent;
-      color: global.$green;
-      border: 2px solid global.$green;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: global.$green;
-        color: global.$navy;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(100, 255, 218, 0.5);
-      }
-
-      &:active {
-        background: global.$green;
-        color: global.$navy;
-        transform: translateY(-1px);
-        box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
-      }
-    }
-
-    .success {
-      color: global.$green;
-      text-align: center;
-    }
-
-    .error {
-      color: global.$pink;
-      text-align: center;
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
   }
 }

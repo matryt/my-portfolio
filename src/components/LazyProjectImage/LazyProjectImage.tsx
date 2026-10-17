@@ -52,7 +52,6 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
             // Placeholder avant que l'élément soit visible
             <div className="image-placeholder awaiting">
               <div className="placeholder-content">
-                <span className="placeholder-icon">🖼️</span>
                 <span className="placeholder-text">{t('lazyImage.awaiting')}</span>
               </div>
             </div>
@@ -65,7 +64,6 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
           ) : hasError ? (
             // État d'erreur
             <div className="image-placeholder error">
-              <span className="error-icon">⚠️</span>
               <span className="error-text">{t('lazyImage.error')}</span>
             </div>
           ) : imageUrl ? (
@@ -80,7 +78,6 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
           ) : (
             // Fallback si pas d'URL d'image
             <div className="image-placeholder no-image">
-              <span className="no-image-icon">📷</span>
               <span className="no-image-text">{t('lazyImage.noImage')}</span>
             </div>
           )}
@@ -88,7 +85,6 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
       ) : (
         // Pas d'image prévue pour ce projet
         <div className="image-placeholder no-image">
-          <span className="no-image-icon">📄</span>
           <span className="no-image-text">{t('lazyImage.textOnly')}</span>
         </div>
       )}

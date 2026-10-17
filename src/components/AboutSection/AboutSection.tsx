@@ -16,19 +16,15 @@ const AboutSection = forwardRef<HTMLElement>((_, ref) => {
             <h3>{t('about.techTitle')}</h3>
             <div className="tech-grid">
               <div className="tech-item">
-                <span className="tech-icon">☕</span>
                 <span>Java</span>
               </div>
               <div className="tech-item">
-                <span className="tech-icon">🚀</span>
                 <span>Spring Boot</span>
               </div>
               <div className="tech-item">
-                <span className="tech-icon">🅰️</span>
                 <span>Angular</span>
               </div>
               <div className="tech-item">
-                <span className="tech-icon">🐘</span>
                 <span>PostgreSQL</span>
               </div>
             </div>

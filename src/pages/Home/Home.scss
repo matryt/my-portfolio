@@ -2,29 +2,6 @@
 
 .home-page {
   min-height: 100vh;
-  background: global.$navy; // Fond uniforme
-  padding-top: 50px; // Compensation pour le header fixe
-}
-
-// Responsive Design for components that don't have their own responsive styles
-@media (max-width: 768px) {
-  .hero-section .hero-content {
-    .name-title {
-      font-size: 2.5rem;
-    }
-
-    .tagline-title {
-      font-size: 1.3rem;
-    }
-
-    .description {
-      font-size: 1rem;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 0 15px;
-  }
+  background-color: global.$bg;
+  color: global.$ink;
 }

@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
 import { useTranslation } from 'react-i18next';
 import './HeroSection.scss';
 
@@ -9,71 +8,10 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToAbout }) => {
-  const heroRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (!heroRef.current) return;
-
-    const tl = gsap.timeline();
-    
-    // Animation d'entrée pour chaque élément
-    tl.fromTo(
-      heroRef.current.querySelector('.name-title'),
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
-    )
-    .fromTo(
-      heroRef.current.querySelector('.tagline-title'),
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-      '-=0.5'
-    )
-    .fromTo(
-      heroRef.current.querySelector('.description'),
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-      '-=0.3'
-    )
-    .fromTo(
-      heroRef.current.querySelector('.cta-button'),
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' },
-      '-=0.2'
-    )
-    .fromTo(
-      heroRef.current.querySelector('.scroll-indicator'),
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-      '-=0.1'
-    );
-
-    // Animation des formes flottantes
-    const shapes = heroRef.current.querySelectorAll('.shape');
-    shapes.forEach((shape, index) => {
-      gsap.fromTo(
-        shape,
-        { opacity: 0, scale: 0 },
-        { 
-          opacity: 0.1, 
-          scale: 1, 
-          duration: 2, 
-          delay: 0.5 + index * 0.2,
-          ease: 'power3.out'
-        }
-      );
-    });
-  }, []);
-
   return (
-    <section className="hero-section" ref={heroRef}>
-      <div className="hero-background">
-        <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-        </div>
-      </div>
+    <section className="hero-section">
       <div className="hero-content">
         <h1 className="name-title">{t('hero.greeting')}</h1>
         <h2 className="tagline-title">
@@ -82,19 +20,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToAbout }) => {
         <p className="description">
           {t('hero.description')}
         </p>
-        <Link to="/projets" className="cta-button">
-          <span>{t('hero.viewProjects')}</span>
-          <div className="button-glow"></div>
-        </Link>
-      </div>
-      
-      {/* Indicateur de scroll */}
-      <div className="scroll-indicator" onClick={onScrollToAbout}>
-        <div className="scroll-text">{t('hero.discover')}</div>
-        <div className="scroll-arrow">
-          <div className="chevron"></div>
-          <div className="chevron"></div>
-          <div className="chevron"></div>
+        <div className="hero-actions">
+          <Link to="/projets" className="cta-button">
+            <span>{t('hero.viewProjects')}</span>
+          </Link>
+          <button className="link-button" onClick={onScrollToAbout}>
+            {t('hero.discover')}
+          </button>
         </div>
       </div>
     </section>

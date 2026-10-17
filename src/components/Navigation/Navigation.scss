@@ -1,138 +1,84 @@
 @use "../../styles/global.scss" as global;
 
 .navigation {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 25, 47, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-  transition: all 0.3s ease;
-  
-  // États de visibilité
-  &.hidden {
-    opacity: 0;
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
-  
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-    animation: slideDown 0.8s ease-out;
-  }
-
-  &.scrolled {
-    background: rgba(10, 25, 47, 0.95);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
-    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-  }
+  background-color: global.$bg;
+  border-bottom: 1px solid global.$border;
+  transition: border-color 0.2s ease;
 
   .nav-container {
-    max-width: 1200px;
+    max-width: global.$max-width;
     margin: 0 auto;
-    padding: 0 20px;
+    padding-left: global.$side-margin;
+    padding-right: global.$side-margin;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 64px;
+    box-sizing: border-box;
   }
 
   .nav-logo {
+    text-decoration: none;
+
     .logo-text {
-      font-size: 1.3rem;
+      font-family: global.$font-sans;
+      font-size: 1rem;
       font-weight: 600;
-      color: global.$green;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      color: global.$ink;
+      letter-spacing: -0.01em;
+      transition: color 0.15s ease;
 
       &:hover {
-        color: global.$lightest-slate;
+        color: global.$accent;
       }
     }
   }
 
   .nav-menu {
     display: flex;
-    align-items: center; // Assure l'alignement vertical
+    align-items: center;
     list-style: none;
-    gap: 2rem;
+    gap: 1.75rem;
     margin: 0;
     padding: 0;
 
     .nav-item {
       display: flex;
-      align-items: center; // Alignement vertical pour chaque item
+      align-items: center;
 
       .nav-link, .nav-button {
-        color: global.$light-slate;
+        color: global.$ink;
         text-decoration: none;
+        font-family: global.$font-mono;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
         font-weight: 400;
-        font-size: 0.9rem;
-        padding: 0.5rem 0;
-        position: relative;
-        transition: all 0.3s ease;
+        padding: 0.25rem 0;
         background: none;
         border: none;
         cursor: pointer;
-        font-family: inherit;
         display: flex;
-        align-items: center; // Alignement vertical du texte
-        height: 40px; // Hauteur fixe pour uniformité
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 8px; // Ajusté pour être cohérent avec la hauteur fixe
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: global.$green;
-          transition: width 0.3s ease;
-        }
+        align-items: center;
+        transition: color 0.15s ease;
 
         &:hover {
-          color: global.$green;
-
-          &::after {
-            width: 100%;
-          }
+          color: global.$accent;
+          text-decoration: underline;
+          text-underline-offset: 4px;
         }
 
         &.active {
-          color: global.$green;
-
-          &::after {
-            width: 100%;
-          }
-        }
-      }
-
-      .nav-cta {
-        background: transparent;
-        border: 1px solid global.$green;
-        border-radius: 4px;
-        padding: 0.4rem 0.8rem; // Réduit le padding
-        color: global.$green;
-        font-weight: 500;
-        font-size: 0.85rem; // Légèrement plus petit
-        transition: all 0.3s ease;
-        height: 32px; // Hauteur réduite
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &::after {
-          display: none;
-        }
-
-        &:hover {
-          background: rgba(100, 255, 218, 0.1);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
+          color: global.$ink;
+          font-weight: 600;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          text-decoration-color: global.$accent;
         }
       }
     }
@@ -145,134 +91,87 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    gap: 4px;
+    gap: 5px;
 
     span {
-      width: 25px;
-      height: 3px;
-      background: global.$light-slate;
-      transition: all 0.3s ease;
+      width: 22px;
+      height: 2px;
+      background-color: global.$ink;
+      transition: transform 0.2s ease, opacity 0.2s ease;
       transform-origin: center;
-
-      &:nth-child(1) {
-        transform: translateY(0) rotate(0);
-      }
-
-      &:nth-child(2) {
-        opacity: 1;
-      }
-
-      &:nth-child(3) {
-        transform: translateY(0) rotate(0);
-      }
     }
 
-    &.active span {
-      background: global.$green;
-
-      &:nth-child(1) {
+    &.active {
+      span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
       }
-
-      &:nth-child(2) {
+      span:nth-child(2) {
         opacity: 0;
       }
-
-      &:nth-child(3) {
+      span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
     }
   }
 
   .nav-mobile {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(10, 25, 47, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.2);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+    display: none;
+    background-color: global.$bg;
+    border-bottom: 1px solid global.$border;
 
     &.active {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
+      display: block;
     }
 
     .nav-mobile-menu {
       list-style: none;
-      padding: 1rem 0.8rem; // Réduit de 2rem 1rem à 1rem 0.8rem
+      padding: 1rem global.$side-margin;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem; // Réduit de 1rem à 0.5rem
+      gap: 0.75rem;
 
       .nav-mobile-item {
         .nav-mobile-link, .nav-mobile-button {
           display: block;
-          color: global.$light-slate;
+          color: global.$ink;
           text-decoration: none;
-          font-size: 0.95rem; // Encore plus petit
-          padding: 0.6rem 0 0.6rem 1rem; // Ajout du padding-left de 1rem
-          border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-          transition: all 0.3s ease;
+          font-family: global.$font-mono;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          padding: 0.5rem 0;
           background: none;
           border: none;
-          border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+          border-bottom: 1px solid transparent;
           cursor: pointer;
-          font-family: inherit;
           width: 100%;
           text-align: left;
+          transition: color 0.15s ease;
 
           &:hover {
-            color: global.$green;
-            padding-left: 1.4rem; // Augmenté pour l'effet hover : 1rem + 0.4rem
+            color: global.$accent;
           }
 
           &.active {
-            color: global.$green;
-            border-bottom-color: global.$green;
-          }
-        }
-
-        .nav-mobile-cta {
-          background: transparent;
-          border: 1px solid global.$green;
-          border-radius: 6px;
-          padding: 0.5rem 0.2rem; // Encore plus compact : 0.6rem 1rem → 0.5rem 0.8rem
-          color: global.$green;
-          font-weight: 500;
-          text-align: center;
-          margin-top: 0.4rem; // Réduit de 0.5rem à 0.4rem
-          font-size: 0.9rem; // Réduit de 0.95rem à 0.9rem
-
-          &:hover {
-            background: rgba(100, 255, 218, 0.1);
-            padding-left: 1.5rem;
+            color: global.$accent;
+            font-weight: 600;
           }
         }
 
         .nav-mobile-language {
-          display: flex;
-          justify-content: center;
-          padding: 0.6rem 0; // Réduit de 1rem à 0.6rem
-          margin-top: 0.3rem; // Réduit de 0.5rem à 0.3rem
-          border-top: 1px solid rgba(100, 255, 218, 0.1);
+          padding-top: 0.5rem;
         }
       }
     }
   }
 }
 
-// Responsive Design
 @media (max-width: 768px) {
   .navigation {
     .nav-container {
-      padding: 0 15px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .nav-menu {
@@ -282,21 +181,12 @@
     .nav-toggle {
       display: flex;
     }
-  }
-}
 
-// Animation d'apparition de la navigation
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+    .nav-mobile {
+      .nav-mobile-menu {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
   }
 }

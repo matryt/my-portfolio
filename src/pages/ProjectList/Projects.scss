@@ -1,50 +1,54 @@
 @use "../../styles/global.scss" as global;
 
 .projects-page {
-  padding: 150px 20px 40px; // Augmenté pour compenser le header fixe
-  max-width: 1200px;
+  padding: 60px 0;
+  max-width: global.$max-width;
   margin: 0 auto;
+  padding-left: global.$side-margin;
+  padding-right: global.$side-margin;
+  box-sizing: border-box;
 }
 
 .page-title {
-  text-align: center;
-  font-size: 3em;
-  color: global.$green;
-  margin-bottom: 40px;
+  text-align: left;
+  font-size: clamp(38px, 5.5vw, 60px);
+  font-weight: 600;
+  color: global.$ink;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  min-height: 600px; // Réserve l'espace pendant le chargement
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 400px;
 }
 
 // Skeleton loading styles
 .project-card.skeleton {
-  background: rgba(100, 255, 218, 0.03);
-  border: 1px solid rgba(100, 255, 218, 0.1);
+  background: transparent;
+  border-bottom: 1px solid global.$border;
+  padding: 1.5rem 0;
   
   .skeleton-image,
   .skeleton-title,
   .skeleton-description,
   .skeleton-tech {
-    background: linear-gradient(90deg, rgba(100, 255, 218, 0.05) 25%, rgba(100, 255, 218, 0.1) 50%, rgba(100, 255, 218, 0.05) 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 4px;
+    background: #E2E5E8;
+    border-radius: 2px;
   }
 
   .skeleton-image {
     width: 100%;
-    height: 200px; // Même hauteur que .project-image
-    margin-bottom: 0;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 1rem;
   }
 
   .skeleton-title {
-    height: 1.6rem;
-    width: 70%;
-    margin-bottom: 12px;
+    height: 1.5rem;
+    width: 50%;
+    margin-bottom: 0.75rem;
   }
 
   .skeleton-description {
@@ -54,35 +58,32 @@
 
     &.short {
       width: 60%;
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
   }
 
   .skeleton-technologies {
     display: flex;
-    gap: 5px;
-    margin-top: 15px;
+    gap: 8px;
+    margin-top: 1rem;
   }
 
   .skeleton-tech {
-    height: 1.2rem;
-    width: 60px;
-    border-radius: 20px;
-  }
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
+    height: 1rem;
+    width: 70px;
   }
 }
 
 .loading-message {
-  text-align: center;
-  font-size: 1.2em;
-  color: global.$light-slate;
-  padding: 50px 0;
+  text-align: left;
+  font-family: global.$font-mono;
+  font-size: 13px;
+  color: global.$label-gray;
+  padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 30px 20px;
+  }
 }
