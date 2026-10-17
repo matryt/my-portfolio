@@ -4,68 +4,38 @@ import { useTranslation } from 'react-i18next';
 import { useProjects } from '../../hooks/useApi';
 import type { ProjectData } from '../../types/api';
 import LazyProjectImage from '../LazyProjectImage/LazyProjectImage';
+import {
+  getProjectSlug,
+  getPlaceholderText,
+  isFeaturedProject,
+  getProjectDomain,
+  getProjectStatusText
+} from '../../utils/projectUtils';
 import './FeaturedProjects.scss';
-
-const getPlaceholderText = (name: string): string => {
-  const lower = name.toLowerCase();
-  if (lower.includes('locations') || lower.includes('réservations') || lower.includes('reservation')) {
-    return '[CAPTURE DU TABLEAU DE BORD]';
-  }
-  if (lower.includes('reconnaissance') || lower.includes('robot')) {
-    return '[SCHÉMA DES TROIS COUCHES]';
-  }
-  if (lower.includes('qcm')) {
-    return '[CAPTURE DE LA DÉMO]';
-  }
-  return '[CAPTURE DU PROJET]';
-};
-
-const getProjectSlug = (name: string): string => {
-  return name.toLowerCase().replace(/\s+/g, '-');
-};
 
 const FeaturedProjects: React.FC = () => {
   const { projects, loading } = useProjects();
   const { t } = useTranslation();
 
   const featuredProjects = useMemo(() => {
-    // 1. Si des projets sont explicitement marqués featured
-    const explicitlyFeatured = projects.filter((p: ProjectData) => p.featured);
-    if (explicitlyFeatured.length > 0) return explicitlyFeatured.slice(0, 3);
+    const featured = projects.filter(isFeaturedProject);
 
-    // 2. Sinon, cibler les 3 projets mis en avant
+    // Ordonner les 3 projets cibles
     const targets = ['locations', 'reconnaissance', 'qcm'];
-    const matched = projects.filter(p =>
-      targets.some(target => p.name.toLowerCase().includes(target))
-    );
-
-    // Trier pour avoir Locations, Robot, QCM
-    matched.sort((a, b) => {
+    featured.sort((a, b) => {
       const orderA = targets.findIndex(k => a.name.toLowerCase().includes(k));
       const orderB = targets.findIndex(k => b.name.toLowerCase().includes(k));
-      return orderA - orderB;
+      return (orderA === -1 ? 99 : orderA) - (orderB === -1 ? 99 : orderB);
     });
 
-    if (matched.length > 0) return matched.slice(0, 3);
-
-    // 3. Fallback sur les 3 premiers projets
+    if (featured.length > 0) return featured.slice(0, 3);
     return projects.slice(0, 3);
   }, [projects]);
 
   const getKicker = (p: ProjectData) => {
-    const isEmbedded = p.technologies?.some(tech => 
-      ['c++', 'arduino', 'python'].includes(tech.toLowerCase())
-    ) && p.name.toLowerCase().includes('robot');
-    const cat = isEmbedded ? 'EMBARQUÉ' : 'WEB';
-
-    let statusText = t('badges.status.completed');
-    if (p.status === 'in-progress') {
-      statusText = t('badges.status.inProgress');
-    } else if (p.status === 'paused') {
-      statusText = t('badges.status.paused');
-    }
-
-    return `${cat} · ${statusText}`.toUpperCase();
+    const domain = getProjectDomain(p);
+    const statusText = getProjectStatusText(p.status, t);
+    return `${domain} · ${statusText}`.toUpperCase();
   };
 
   return (

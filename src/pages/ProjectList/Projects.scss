@@ -1,89 +1,261 @@
 @use "../../styles/global.scss" as global;
 
 .projects-page {
-  padding: 60px 0;
-  max-width: global.$max-width;
-  margin: 0 auto;
-  padding-left: global.$side-margin;
-  padding-right: global.$side-margin;
-  box-sizing: border-box;
-}
+  padding: 60px 0 100px;
+  background-color: global.$bg;
+  min-height: 80vh;
 
-.page-title {
-  text-align: left;
-  font-size: clamp(38px, 5.5vw, 60px);
-  font-weight: 600;
-  color: global.$ink;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
-}
-
-.projects-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  min-height: 400px;
-}
-
-// Skeleton loading styles
-.project-card.skeleton {
-  background: transparent;
-  border-bottom: 1px solid global.$border;
-  padding: 1.5rem 0;
-  
-  .skeleton-image,
-  .skeleton-title,
-  .skeleton-description,
-  .skeleton-tech {
-    background: #E2E5E8;
-    border-radius: 2px;
+  .page-title {
+    font-size: clamp(38px, 5.5vw, 62px);
+    font-weight: 600;
+    color: global.$ink;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
-  .skeleton-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin-bottom: 1rem;
-  }
+  .project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid global.$border;
 
-  .skeleton-title {
-    height: 1.5rem;
-    width: 50%;
-    margin-bottom: 0.75rem;
-  }
+    .filter-btn {
+      background: none;
+      border: none;
+      padding: 0.25rem 0;
+      color: global.$label-gray;
+      cursor: pointer;
+      transition: color 0.15s ease;
 
-  .skeleton-description {
-    height: 1rem;
-    width: 100%;
-    margin-bottom: 0.5rem;
+      &:hover {
+        color: global.$ink;
+      }
 
-    &.short {
-      width: 60%;
-      margin-bottom: 1rem;
+      &.active {
+        color: global.$ink;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-color: global.$ink;
+      }
     }
   }
 
-  .skeleton-technologies {
+  .featured-projects-list {
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  .featured-project-item {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid global.$border;
+
+    .item-image-col {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background-color: #E2E5E8;
+      border: 1px solid global.$border;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .project-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        box-sizing: border-box;
+
+        .placeholder-label {
+          font-family: global.$font-mono;
+          font-size: 11px;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: global.$label-gray;
+          text-align: center;
+        }
+      }
+
+      .project-image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .item-text-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .item-kicker {
+        font-family: global.$font-mono;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: global.$label-gray;
+      }
+
+      .item-title {
+        font-family: global.$font-sans;
+        font-size: clamp(20px, 2.5vw, 26px);
+        font-weight: 600;
+        color: global.$ink;
+        line-height: 1.25;
+        margin: 0;
+
+        a {
+          color: global.$ink;
+          text-decoration: none;
+          transition: color 0.15s ease;
+
+          &:hover {
+            color: global.$accent;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        }
+      }
+
+      .item-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: global.$text-secondary;
+        margin: 0.25rem 0 0.5rem 0;
+        max-width: 650px;
+      }
+
+      .item-techs {
+        font-family: global.$font-mono;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: global.$label-gray;
+      }
+    }
+
+    &.skeleton {
+      .skeleton-box {
+        background-color: #E2E5E8;
+      }
+
+      .skeleton-line {
+        background-color: #E2E5E8;
+        border-radius: 2px;
+        height: 1rem;
+        margin-bottom: 0.5rem;
+
+        &.short {
+          width: 30%;
+        }
+
+        &.title {
+          height: 1.5rem;
+          width: 70%;
+        }
+
+        &.text {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .archives-section {
     margin-top: 1rem;
+
+    .archives-title {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid global.$border;
+      margin: 0;
+    }
+
+    .archives-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid global.$border;
+
+      .archive-name {
+        font-family: global.$font-sans;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: global.$ink;
+
+        a {
+          color: global.$ink;
+          text-decoration: none;
+          transition: color 0.15s ease;
+
+          &:hover {
+            color: global.$accent;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        }
+      }
+
+      .archive-meta {
+        font-family: global.$font-mono;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: global.$label-gray;
+        text-align: right;
+        flex-shrink: 0;
+      }
+    }
   }
 
-  .skeleton-tech {
-    height: 1rem;
-    width: 70px;
+  .empty-message {
+    padding: 3rem 0;
+    text-align: center;
+    color: global.$label-gray;
   }
-}
-
-.loading-message {
-  text-align: left;
-  font-family: global.$font-mono;
-  font-size: 13px;
-  color: global.$label-gray;
-  padding: 40px 0;
 }
 
 @media (max-width: 768px) {
   .projects-page {
-    padding: 30px 20px;
+    padding: 30px 0 60px;
+
+    .project-filters {
+      gap: 1rem 1.25rem;
+    }
+
+    .featured-project-item {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+    }
+
+    .archives-section {
+      .archive-row {
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: flex-start;
+
+        .archive-meta {
+          text-align: left;
+        }
+      }
+    }
   }
 }

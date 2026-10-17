@@ -16,6 +16,17 @@
     "experienceTitle": "EXPERIENCE",
     "educationTitle": "EDUCATION"
   },
+  "projectsPage": {
+    "title": "Projects",
+    "filters": {
+      "all": "All",
+      "personal": "Personal",
+      "school": "School",
+      "collaborative": "Collaborative"
+    },
+    "archivesTitle": "ARCHIVES",
+    "empty": "No project matches this filter."
+  },
   "hero": {
     "greeting": "Hello, I'm Mathieu Cuvelier.",
     "tagline": "Engineering student and Full Stack developer at Docaposte.",
