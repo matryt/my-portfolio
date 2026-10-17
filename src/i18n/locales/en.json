@@ -119,7 +119,11 @@
     "send": "Send",
     "success": "Your message has been sent successfully!",
     "error": "An error occurred.",
-    "errorSubmit": "Unable to submit the form."
+    "errorSubmit": "Unable to submit the form.",
+    "errorRequired": "All fields are required.",
+    "errorEmail": "Please enter a valid email address.",
+    "errorMinMessage": "Message must be at least 10 characters long.",
+    "rateLimit": "Too many messages sent. Please wait a few minutes."
   },
   "lazyImage": {
     "awaiting": "Waiting for image...",

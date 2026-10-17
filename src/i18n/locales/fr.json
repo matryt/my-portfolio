@@ -120,7 +120,11 @@
     "send": "Envoyer",
     "success": "Votre message a été envoyé avec succès !",
     "error": "Une erreur est survenue.",
-    "errorSubmit": "Impossible de soumettre le formulaire."
+    "errorSubmit": "Impossible de soumettre le formulaire.",
+    "errorRequired": "Tous les champs sont requis.",
+    "errorEmail": "Veuillez saisir une adresse email valide.",
+    "errorMinMessage": "Le message doit contenir au moins 10 caractères.",
+    "rateLimit": "Trop de messages envoyés. Veuillez patienter quelques minutes."
   },
   "lazyImage": {
     "awaiting": "Image en attente...",
