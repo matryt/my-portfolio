@@ -23,6 +23,16 @@
       color: global.$accent;
     }
   }
+
+  .loading-message {
+    font-family: global.$font-mono;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: global.$label-gray;
+    padding: 60px 0;
+    text-align: center;
+  }
 }
 
 .project-header {
@@ -30,184 +40,247 @@
   margin-bottom: 2rem;
 
   .project-title {
-    font-size: clamp(38px, 5vw, 56px);
+    font-family: global.$font-sans;
+    font-size: clamp(34px, 4.5vw, 50px);
     font-weight: 600;
     color: global.$ink;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     line-height: 1.15;
     letter-spacing: -0.02em;
   }
 
   .project-tagline {
+    font-family: global.$font-sans;
     font-size: 1.15rem;
     color: global.$text-secondary;
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 820px;
     margin: 0;
   }
 }
 
-.project-main-image {
+.project-media-container {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  background-color: #E2E5E8;
-  border: 1px solid global.$border;
-  overflow: hidden;
   margin: 2rem 0 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  img {
+  .project-placeholder-box {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    aspect-ratio: 16 / 9;
+    max-height: 520px;
+    background-color: #E2E5E8;
+    border: 1px solid global.$border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: center;
+
+    span {
+      font-family: global.$font-mono;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: global.$label-gray;
+    }
+  }
+
+  .project-main-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 520px;
+    background-color: #E2E5E8;
+    border: 1px solid global.$border;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 }
 
-.project-summary {
+.project-content-grid {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 4.5rem;
+  align-items: start;
 
-  @media (max-width: 768px) {
+  @media (max-width: 860px) {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
-  .summary-text {
-    .info-block {
-      margin-bottom: 2.5rem;
+  .content-main {
+    .editorial-block {
+      margin-bottom: 2.75rem;
 
-      h3 {
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .block-title {
         font-family: global.$font-mono;
         font-size: 12px;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: global.$label-gray;
         font-weight: 400;
-        margin-bottom: 0.75rem;
+        margin: 0 0 0.85rem;
       }
 
-      p {
-        font-size: 1.05rem;
-        line-height: 1.65;
-        color: global.$ink;
-        margin-bottom: 0.75rem;
-
-        strong {
+      .block-body {
+        p {
+          font-family: global.$font-sans;
+          font-size: 1.05rem;
+          line-height: 1.65;
           color: global.$ink;
-          font-weight: 600;
+          margin: 0 0 0.85rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          strong {
+            color: global.$ink;
+            font-weight: 600;
+          }
+        }
+
+        .deployment-link {
+          color: global.$accent;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          transition: color 0.15s ease;
+
+          &:hover {
+            color: global.$accent-hover;
+          }
+        }
+
+        .placeholder-tag {
+          font-family: global.$font-mono;
+          font-size: 12px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: global.$label-gray;
         }
       }
     }
   }
 
-  .summary-sidebar {
+  .content-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
 
-    .sidebar-block {
+    .sidebar-section {
       border-top: 1px solid global.$border;
-      padding-top: 1rem;
+      padding-top: 1.25rem;
+      margin-bottom: 2rem;
 
-      h3 {
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .sidebar-title {
         font-family: global.$font-mono;
         font-size: 12px;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: global.$label-gray;
         font-weight: 400;
-        margin-bottom: 1rem;
+        margin: 0 0 0.85rem;
+      }
+
+      .tech-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        .tech-item {
+          font-family: global.$font-sans;
+          font-size: 1rem;
+          color: global.$ink;
+          line-height: 1.5;
+        }
+      }
+
+      .links-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        .editorial-link {
+          font-family: global.$font-sans;
+          font-size: 1rem;
+          color: global.$accent;
+          text-decoration: none;
+          transition: color 0.15s ease;
+
+          &:hover {
+            color: global.$accent-hover;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+        }
+
+        .placeholder-tag {
+          font-family: global.$font-mono;
+          font-size: 12px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: global.$label-gray;
+        }
+      }
+
+      .collaborators-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        .collaborator-item {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 0.75rem;
+
+          .collaborator-name {
+            font-family: global.$font-sans;
+            font-size: 1rem;
+            color: global.$ink;
+          }
+
+          .collaborator-handle {
+            font-family: global.$font-mono;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: global.$label-gray;
+            text-decoration: none;
+            transition: color 0.15s ease;
+
+            &:hover {
+              color: global.$accent;
+            }
+          }
+        }
       }
     }
   }
-}
-
-.tech-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  .tech-item,
-  .tech-badge {
-    color: global.$ink;
-    font-size: 0.95rem;
-    font-weight: 400;
-  }
-}
-
-.project-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-
-  .link-button {
-    color: global.$accent;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-size: 0.95rem;
-    transition: color 0.15s ease;
-
-    &:hover {
-      color: global.$accent-hover;
-    }
-  }
-}
-
-.project-partners {
-  margin-top: 0;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  li {
-    font-size: 0.95rem;
-    color: global.$ink;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    a {
-      font-family: global.$font-mono;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: global.$label-gray;
-      text-decoration: none;
-
-      &:hover {
-        color: global.$accent;
-      }
-    }
-  }
-}
-
-.gallery-loading,
-.gallery-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  background-color: #E2E5E8;
-  color: global.$label-gray;
-  font-family: global.$font-mono;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 1px solid global.$border;
 }
 
 @media (max-width: 768px) {
   .project-detail-page {
-    padding: 20px 20px 60px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
   }
 }

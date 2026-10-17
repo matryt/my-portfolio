@@ -18,6 +18,20 @@ export const getPlaceholderText = (name: string): string => {
   return '[CAPTURE DU PROJET]';
 };
 
+export const getDetailPlaceholderText = (name: string): string => {
+  const lower = name.toLowerCase();
+  if (lower.includes('locations') || lower.includes('réservations') || lower.includes('reservation')) {
+    return '[CAPTURE : CALENDRIER DES DISPONIBILITÉS]';
+  }
+  if (lower.includes('reconnaissance') || lower.includes('robot')) {
+    return '[SCHÉMA DES TROIS COUCHES]';
+  }
+  if (lower.includes('qcm')) {
+    return '[CAPTURE DE LA DÉMO]';
+  }
+  return `[CAPTURE : ${name.toUpperCase()}]`;
+};
+
 export const isFeaturedProject = (project: ProjectData): boolean => {
   if (project.featured) return true;
   const targets = ['locations', 'reconnaissance', 'qcm'];

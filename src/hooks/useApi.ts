@@ -107,8 +107,13 @@ export const useProject = (projectName: string) => {
         setError(null);
         // Récupérer tous les projets et chercher celui qui correspond
         const allProjects = await fetchProjects(language);
+        const decoded = decodeURIComponent(projectName).toLowerCase();
         const foundProject = allProjects.find(
-          (p) => p.name.toLowerCase().replace(/\s+/g, '-') === projectName
+          (p) =>
+            p.name.toLowerCase().replace(/\s+/g, '-') === decoded ||
+            p.name.toLowerCase() === decoded ||
+            (p.id && p.id.toLowerCase() === decoded) ||
+            (p.id && p.id.toLowerCase().replace(/\s+/g, '-') === decoded)
         );
         setProject(foundProject || null);
       } catch (err) {

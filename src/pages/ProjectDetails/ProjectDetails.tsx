@@ -1,35 +1,36 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProject } from '../../hooks/useApi';
 import { useProjectImage } from '../../hooks/useProjectImages';
 import { useLanguage } from '../../contexts/LanguageContext';
-import './ProjectDetails.scss';
-import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import ProjectBadges from '../../components/ProjectBadges/ProjectBadges';
+import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import { splitMultiLineText } from '../../utils/textUtils';
+import { getDetailPlaceholderText } from '../../utils/projectUtils';
+import './ProjectDetails.scss';
 
 const ProjectDetail: React.FC = () => {
   const { projectName } = useParams<{ projectName: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { language } = useLanguage();
-  
-  // Le hook useProject va chercher le projet par nom avec la langue actuelle
+
+  // Le hook useProject va chercher le projet par nom/slug avec la langue actuelle
   const { project, loading } = useProject(projectName || '');
-  
+
   // Hook pour charger les images séparément
-  const { imageData, isLoadingImage, hasScreenshots } = useProjectImage(
-    project || { 
-      hasImage: false, 
-      hasScreenshots: false, 
-      name: '', 
-      description: '', 
-      github: '', 
-      displayed: false, 
+  const { imageData, hasScreenshots } = useProjectImage(
+    project || {
+      hasImage: false,
+      hasScreenshots: false,
+      name: '',
+      description: '',
+      github: '',
+      displayed: false,
       technologies: [],
       partners: []
-    }, 
+    },
     language
   );
 
@@ -41,7 +42,11 @@ const ProjectDetail: React.FC = () => {
   }, [loading, project, projectName, navigate]);
 
   if (loading) {
-    return <div className="loading-message">{t('projectDetail.loading', 'Chargement du projet...')}</div>;
+    return (
+      <div className="project-detail-page">
+        <div className="loading-message">{t('projectDetail.loading', 'Chargement du projet...')}</div>
+      </div>
+    );
   }
 
   if (!project) {
@@ -49,27 +54,140 @@ const ProjectDetail: React.FC = () => {
   }
 
   return (
-    <div className="project-detail-page">
+    <article className="project-detail-page">
+      <Link to="/projets" className="back-link">
+        ← {t('projectDetail.backToProjects', 'PROJETS')}
+      </Link>
+
       <header className="project-header">
         <h1 className="project-title">{project.name}</h1>
         <p className="project-tagline">{project.description}</p>
-        <ProjectBadges 
+        <ProjectBadges
           status={project.status}
           projectType={project.projectType}
-          isCollaborative={project.partners && project.partners.length > 0}
+          isCollaborative={Boolean(project.partners && project.partners.length > 0)}
         />
-          {/* Affichage des partenaires */}
+      </header>
+
+      {/* Galerie d'images ou conteneur 16:9 éditorial */}
+      <div className="project-media-container">
+        {hasScreenshots && imageData?.screenshots && imageData.screenshots.length > 0 ? (
+          <ImageGallery images={imageData.screenshots} />
+        ) : imageData?.image ? (
+          <div className="project-main-image">
+            <img src={imageData.image} alt={project.name} />
+          </div>
+        ) : (
+          <div className="project-placeholder-box">
+            <span>{getDetailPlaceholderText(project.name)}</span>
+          </div>
+        )}
+      </div>
+
+      <section className="project-content-grid">
+        <div className="content-main">
+          {/* CE QUE FAIT LE SITE */}
+          {(project.longDescription || project.description) && (
+            <div className="editorial-block">
+              <h2 className="block-title">{t('projectDetail.whatItDoes', 'Ce que fait le site')}</h2>
+              <div className="block-body">
+                {splitMultiLineText(project.longDescription || project.description)}
+              </div>
+            </div>
+          )}
+
+          {/* CHOIX DE CONCEPTION */}
+          {project.problemsAndSolutions && (
+            <div className="editorial-block">
+              <h2 className="block-title">{t('projectDetail.designChoices', 'Trois choix de conception')}</h2>
+              <div className="block-body">
+                {splitMultiLineText(project.problemsAndSolutions)}
+              </div>
+            </div>
+          )}
+
+          {/* MISE EN PRODUCTION */}
+          <div className="editorial-block">
+            <h2 className="block-title">{t('projectDetail.deployment', 'Mise en production')}</h2>
+            <div className="block-body">
+              {project.demo ? (
+                <p>
+                  {t('projectDetail.deployedAt', 'Déployé et accessible en ligne :')}{' '}
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="deployment-link">
+                    {project.demo}
+                  </a>
+                </p>
+              ) : project.name.toLowerCase().includes('locations') ? (
+                <p>
+                  Déployé et maintenu sur un serveur VPS.{' '}
+                  <span className="placeholder-tag">[AJOUTER : NOMBRE D’UTILISATEURS, DE LOGEMENTS OU DE RÉSERVATIONS]</span>
+                </p>
+              ) : (
+                <p className="placeholder-tag">[DÉPLOIEMENT OU HÉBERGEMENT : À PRÉCISER]</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <aside className="content-sidebar">
+          {/* TECHNOLOGIES */}
+          {project.technologies && project.technologies.length > 0 && (
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">{t('projectDetail.technologies', 'Technologies')}</h3>
+              <ul className="tech-list">
+                {project.technologies.map((tech) => (
+                  <li key={tech} className="tech-item">{tech}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* LIENS */}
+          <div className="sidebar-section">
+            <h3 className="sidebar-title">{t('projectDetail.links', 'Liens')}</h3>
+            <div className="links-list">
+              {project.github ? (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-link"
+                >
+                  GitHub →
+                </a>
+              ) : (
+                <span className="placeholder-tag">{t('projectDetail.privateRepo', '[DÉPÔT PRIVÉ : À PRÉCISER]')}</span>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-link"
+                >
+                  {t('projectDetail.demo', 'Démo en ligne')} →
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* CO-CRÉATEURS */}
           {project.partners && project.partners.length > 0 && (
-            <div className="project-partners">
-              <h4>{t('projectDetail.collaborators')}:</h4>
-              <ul>
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">
+                {project.partners.length > 1
+                  ? t('projectDetail.collaboratorsPlural', 'Co-créateurs')
+                  : t('projectDetail.collaborators', 'Co-créateur')}
+              </h3>
+              <ul className="collaborators-list">
                 {project.partners.map((partner) => (
-                  <li key={partner.username}>
-                    {partner.name} {' '}
+                  <li key={partner.username} className="collaborator-item">
+                    <span className="collaborator-name">{partner.name}</span>
                     <a
                       href={partner.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="collaborator-handle"
                     >
                       @{partner.username}
                     </a>
@@ -78,76 +196,9 @@ const ProjectDetail: React.FC = () => {
               </ul>
             </div>
           )}
-      </header>
-      
-      {/* Galerie d'images - Adaptive avec nouveau système */}
-      {hasScreenshots && (
-        <div className="image-gallery-container">
-          {isLoadingImage ? (
-            <div className="gallery-loading">
-              <div className="spinner"></div>
-              <p>{t('projectDetail.loadingImages', 'Chargement des images...')}</p>
-            </div>
-          ) : imageData?.screenshots && imageData.screenshots.length > 0 ? (
-            <ImageGallery images={imageData.screenshots} />
-          ) : (
-            <div className="gallery-placeholder">
-              <p>{t('projectDetail.noImages', 'Images non disponibles')}</p>
-            </div>
-          )}
-        </div>
-      )}
-
-      <hr className="divider" />
-      
-      <section className="project-summary">
-        <div className="summary-text">
-          {project.longDescription && (
-            <div className="info-block">
-              <h3>{t('projectDetail.context')}</h3>
-              {splitMultiLineText(project.longDescription)}
-            </div>
-          )}
-          {project.problemsAndSolutions && (
-            <div className="info-block">
-              <h3>{t('projectDetail.problems')}</h3>
-              {splitMultiLineText(project.problemsAndSolutions)}
-            </div>
-          )}
-          {project.whatILearned && (
-            <div className="info-block">
-              <h3>{t('projectDetail.learned')}</h3>
-              {splitMultiLineText(project.whatILearned)}
-            </div>
-          )}
-        </div>
-        <aside className="summary-sidebar">
-          <div className="sidebar-block">
-            <h3>{t('projectDetail.technologies')}</h3>
-            <div className="tech-list">
-              {project.technologies?.map((tech) => (
-                <span key={tech} className="tech-badge">{tech}</span>
-              ))}
-            </div>
-          </div>
-          <div className="sidebar-block">
-            <h3>{t('projectDetail.links')}</h3>
-            <div className="project-links">
-              {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-button">
-                  {t('projectDetail.github')}
-                </a>
-              )}
-              {project.demo && (
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="link-button">
-                  {t('projectDetail.demo')}
-                </a>
-              )}
-            </div>
-          </div>
         </aside>
       </section>
-    </div>
+    </article>
   );
 };
 
