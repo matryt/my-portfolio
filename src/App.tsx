@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navigation from './components/Navigation/Navigation';
+import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import ProjectDetail from './pages/ProjectDetails/ProjectDetails';
 import Projects from './pages/ProjectList/Projects';
@@ -18,6 +19,7 @@ function App() {
           <Route path="/projets" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </LanguageProvider>
   );

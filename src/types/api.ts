@@ -27,6 +27,7 @@ export interface Project {
   problemsAndSolutions?: string;
   projectType?: "personal" | "school";
   order?: number;
+  featured?: boolean;
   hasImage?: boolean; // Indique si le projet a une image
   hasScreenshots?: boolean; // Indique si le projet a des screenshots
 }

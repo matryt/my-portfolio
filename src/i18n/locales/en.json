@@ -3,7 +3,18 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "experience": "Experience"
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "home": {
+    "kicker": "ENGINEERING STUDENT · POLYTECH NICE-SOPHIA · WORK-STUDY AT DOCAPOSTE",
+    "headline": "I design web applications and take care of their security, from code to deployment.",
+    "viewProjects": "View projects",
+    "contactMe": "Contact me",
+    "featuredTitle": "FEATURED PROJECTS",
+    "allProjects": "ALL PROJECTS AND ARCHIVES →",
+    "experienceTitle": "EXPERIENCE",
+    "educationTitle": "EDUCATION"
   },
   "hero": {
     "greeting": "Hello, I'm Mathieu Cuvelier.",

@@ -1,36 +1,20 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
-import AboutSection from '../../components/AboutSection/AboutSection';
+import FeaturedProjects from '../../components/FeaturedProjects/FeaturedProjects';
 import ParcoursSection from '../../components/ParcoursSection/ParcoursSection';
 import './Home.scss';
 
 const Home: React.FC = () => {
-  const aboutRef = useRef<HTMLElement>(null);
-
-  // Fonction de scroll vers la section About
-  const scrollToAbout = () => {
-    if (aboutRef.current) {
-      const offsetTop = aboutRef.current.offsetTop;
-      window.scrollTo({
-        top: offsetTop - 50, // Petit offset pour ne pas être collé au bord
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <HeroSection onScrollToAbout={scrollToAbout} />
+      {/* 1. Hero : Kicker mono, phrase d'accroche h1, deux liens */}
+      <HeroSection />
 
-      {/* About Section */}
-      <AboutSection ref={aboutRef} />
+      {/* 2. Trois projets en avant, capture à gauche, texte à droite, lien archives */}
+      <FeaturedProjects />
 
-      {/* Parcours Section */}
+      {/* 3. Expérience et formation en deux colonnes avec dates en mono */}
       <ParcoursSection />
-
-      {/* Projects Section */}
-      {/* <ProjectsPreviewSection /> */}
     </div>
   );
 };

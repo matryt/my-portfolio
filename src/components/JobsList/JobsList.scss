@@ -3,7 +3,7 @@
 .jobs-section {
   width: 100%;
   
-  h2 {
+  h2.mono-label {
     font-family: global.$font-mono;
     font-size: 12px;
     text-transform: uppercase;
@@ -25,75 +25,83 @@
   background: transparent;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
 
   &:first-child {
     border-top: 1px solid global.$border;
   }
 
-  h3 {
-    font-family: global.$font-sans;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: global.$ink;
-    margin: 0;
+  .job-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
 
-    .company-link {
-      color: global.$ink;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+    h3 {
+      font-family: global.$font-sans;
+      font-size: 1rem;
       font-weight: 600;
-      transition: color 0.15s ease;
+      color: global.$ink;
+      margin: 0;
+      line-height: 1.4;
 
-      &:hover {
-        color: global.$accent;
+      .company-link {
+        color: global.$ink;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: color 0.15s ease;
+
+        &:hover {
+          color: global.$accent;
+        }
       }
+    }
+
+    .job-date {
+      font-family: global.$font-mono;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: global.$label-gray;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
   }
 
-  p {
+  .job-description {
     color: global.$text-secondary;
     font-size: 0.95rem;
     line-height: 1.5;
-    margin: 0.25rem 0 0 0;
-  }
+    margin: 0;
 
-  span {
-    font-family: global.$font-mono;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: global.$label-gray;
-    margin-top: 0.25rem;
+    p {
+      margin: 0.25rem 0;
+      color: global.$text-secondary;
+      font-size: 0.95rem;
+    }
   }
 
   &.skeleton {
-    .skeleton-title,
-    .skeleton-text,
-    .skeleton-date {
+    .skeleton-title {
+      height: 1.1rem;
+      width: 60%;
       background: #E2E5E8;
       border-radius: 2px;
     }
 
-    .skeleton-title {
-      height: 1.2rem;
-      width: 70%;
-      margin-bottom: 0.5rem;
+    .skeleton-date {
+      height: 0.85rem;
+      width: 80px;
+      background: #E2E5E8;
+      border-radius: 2px;
     }
 
     .skeleton-text {
-      height: 0.95rem;
-      width: 100%;
-      margin-bottom: 0.3rem;
-
-      &.short {
-        width: 60%;
-      }
-    }
-
-    .skeleton-date {
-      height: 0.85rem;
-      width: 40%;
-      margin-top: 0.2rem;
+      height: 0.9rem;
+      width: 90%;
+      background: #E2E5E8;
+      border-radius: 2px;
+      margin-top: 0.5rem;
     }
   }
 }

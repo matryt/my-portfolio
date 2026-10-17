@@ -3,7 +3,18 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
-    "experience": "Parcours"
+    "experience": "Parcours",
+    "contact": "Contact"
+  },
+  "home": {
+    "kicker": "ÉTUDIANT INGÉNIEUR · POLYTECH NICE-SOPHIA · ALTERNANCE CHEZ DOCAPOSTE",
+    "headline": "Je conçois des applications web et je m'occupe de leur sécurité, du code jusqu'au déploiement.",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter",
+    "featuredTitle": "PROJETS EN AVANT",
+    "allProjects": "TOUS LES PROJETS ET ARCHIVES →",
+    "experienceTitle": "EXPÉRIENCE",
+    "educationTitle": "FORMATION"
   },
   "hero": {
     "greeting": "Bonjour, je suis Mathieu Cuvelier.",
