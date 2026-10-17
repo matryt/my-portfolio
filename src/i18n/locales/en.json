@@ -109,7 +109,8 @@
     "12": "December"
   },
   "contact": {
-    "title": "Contact me",
+    "title": "Contact",
+    "intro": "[A SENTENCE ABOUT WHAT PEOPLE CAN WRITE TO YOU FOR]",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "name": "Name",

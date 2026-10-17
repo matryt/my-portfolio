@@ -1,58 +1,57 @@
 @use "../../styles/global.scss" as global;
 
 .contact-page {
-  padding: 60px 0 100px;
-  background-color: global.$bg;
-  color: global.$ink;
   max-width: global.$max-width;
   margin: 0 auto;
+  padding: 60px 0 120px;
   padding-left: global.$side-margin;
   padding-right: global.$side-margin;
   box-sizing: border-box;
 
   .contact-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 5rem;
     align-items: start;
-    margin-top: 2rem;
   }
 
   .contact-left {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
 
     h1 {
-      font-size: clamp(38px, 5.5vw, 60px);
+      font-family: global.$font-sans;
+      font-size: clamp(38px, 5.5vw, 56px);
       font-weight: 600;
       color: global.$ink;
       letter-spacing: -0.02em;
-      margin: 0;
+      margin: 0 0 1.5rem;
+      line-height: 1.1;
     }
 
     .contact-intro {
-      font-size: 1.15rem;
-      color: global.$text-secondary;
+      font-family: global.$font-mono;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: global.$label-gray;
       line-height: 1.6;
-      margin: 0;
+      margin: 0 0 2.25rem;
+      max-width: 440px;
     }
 
     .social-links {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      margin-top: 1rem;
 
-      a {
+      .social-link {
         color: global.$accent;
         font-family: global.$font-sans;
-        font-weight: 500;
         font-size: 1.05rem;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 0.25rem;
         transition: color 0.15s ease;
 
         &:hover {
@@ -69,13 +68,13 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .contact-page {
-    padding: 30px 20px 60px;
+    padding: 30px 24px 80px;
 
     .contact-layout {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: 3rem;
     }
   }
 }

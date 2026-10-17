@@ -36,11 +36,9 @@ export const useContactForm = () => {
       const response = await axios.post(`${API_BASE_URL}/contact`, formData);
 
       if (response.status === 200) {
-        setTimeout(() => {
-          setSuccess(true);
-          setFormData({ name: '', email: '', message: '' });
-          setIsSubmitting(false);
-        }, 1500);
+        setSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+        setIsSubmitting(false);
       }
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {

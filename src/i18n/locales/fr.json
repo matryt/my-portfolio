@@ -110,7 +110,8 @@
     "12": "Décembre"
   },
   "contact": {
-    "title": "Contactez-moi",
+    "title": "Contact",
+    "intro": "[UNE PHRASE SUR CE POUR QUOI ON PEUT T’ÉCRIRE]",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "name": "Nom",
