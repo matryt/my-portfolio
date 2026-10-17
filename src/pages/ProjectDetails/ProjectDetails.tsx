@@ -79,7 +79,7 @@ const ProjectDetail: React.FC = () => {
           </div>
         ) : (
           <div className="project-placeholder-box">
-            <span>{getDetailPlaceholderText(project.name)}</span>
+            <span>{getDetailPlaceholderText(project)}</span>
           </div>
         )}
       </div>
@@ -107,26 +107,23 @@ const ProjectDetail: React.FC = () => {
           )}
 
           {/* MISE EN PRODUCTION */}
-          <div className="editorial-block">
-            <h2 className="block-title">{t('projectDetail.deployment', 'Mise en production')}</h2>
-            <div className="block-body">
-              {project.demo ? (
-                <p>
-                  {t('projectDetail.deployedAt', 'Déployé et accessible en ligne :')}{' '}
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="deployment-link">
-                    {project.demo}
-                  </a>
-                </p>
-              ) : project.name.toLowerCase().includes('locations') ? (
-                <p>
-                  Déployé et maintenu sur un serveur VPS.{' '}
-                  <span className="placeholder-tag">[AJOUTER : NOMBRE D’UTILISATEURS, DE LOGEMENTS OU DE RÉSERVATIONS]</span>
-                </p>
-              ) : (
-                <p className="placeholder-tag">[DÉPLOIEMENT OU HÉBERGEMENT : À PRÉCISER]</p>
-              )}
+          {(project.deployment || project.demo) && (
+            <div className="editorial-block">
+              <h2 className="block-title">{t('projectDetail.deployment', 'Mise en production')}</h2>
+              <div className="block-body">
+                {project.deployment ? (
+                  <div>{splitMultiLineText(project.deployment)}</div>
+                ) : project.demo ? (
+                  <p>
+                    {t('projectDetail.deployedAt', 'Déployé et accessible en ligne :')}{' '}
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="deployment-link">
+                      {project.demo}
+                    </a>
+                  </p>
+                ) : null}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <aside className="content-sidebar">

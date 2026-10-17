@@ -1,44 +1,39 @@
 import type { ProjectData } from '../types/api';
 
-export const getProjectSlug = (name: string): string => {
-  return name.toLowerCase().replace(/\s+/g, '-');
+export const getProjectSlug = (projectOrName: { name: string; slug?: string } | string): string => {
+  if (typeof projectOrName === 'string') {
+    return projectOrName.toLowerCase().replace(/\s+/g, '-');
+  }
+  return projectOrName.slug || projectOrName.name.toLowerCase().replace(/\s+/g, '-');
 };
 
-export const getPlaceholderText = (name: string): string => {
-  const lower = name.toLowerCase();
-  if (lower.includes('locations') || lower.includes('réservations') || lower.includes('reservation')) {
-    return '[CAPTURE DU TABLEAU DE BORD]';
+export const getPlaceholderText = (projectOrName: { name: string; captureLabel?: string } | string): string => {
+  if (typeof projectOrName === 'object') {
+    if (projectOrName.captureLabel) {
+      return `[CAPTURE : ${projectOrName.captureLabel.toUpperCase()}]`;
+    }
+    return `[CAPTURE : ${projectOrName.name.toUpperCase()}]`;
   }
-  if (lower.includes('reconnaissance') || lower.includes('robot')) {
-    return '[SCHÉMA DES TROIS COUCHES]';
-  }
-  if (lower.includes('qcm')) {
-    return '[CAPTURE DE LA DÉMO]';
-  }
-  return '[CAPTURE DU PROJET]';
+  return `[CAPTURE : ${projectOrName.toUpperCase()}]`;
 };
 
-export const getDetailPlaceholderText = (name: string): string => {
-  const lower = name.toLowerCase();
-  if (lower.includes('locations') || lower.includes('réservations') || lower.includes('reservation')) {
-    return '[CAPTURE : CALENDRIER DES DISPONIBILITÉS]';
-  }
-  if (lower.includes('reconnaissance') || lower.includes('robot')) {
-    return '[SCHÉMA DES TROIS COUCHES]';
-  }
-  if (lower.includes('qcm')) {
-    return '[CAPTURE DE LA DÉMO]';
-  }
-  return `[CAPTURE : ${name.toUpperCase()}]`;
+export const getDetailPlaceholderText = (projectOrName: { name: string; captureLabel?: string } | string): string => {
+  return getPlaceholderText(projectOrName);
 };
 
 export const isFeaturedProject = (project: ProjectData): boolean => {
-  if (project.featured) return true;
+  if (project.featured !== undefined) {
+    return Boolean(project.featured);
+  }
+  // Fallback de transition si la colonne Notion n'est pas encore renseignée
   const targets = ['locations', 'reconnaissance', 'qcm'];
   return targets.some(target => project.name.toLowerCase().includes(target));
 };
 
 export const getProjectDomain = (project: ProjectData): string => {
+  if (project.domain) {
+    return project.domain.toUpperCase();
+  }
   const isEmbedded = project.technologies?.some(tech =>
     ['c++', 'arduino'].includes(tech.toLowerCase())
   );

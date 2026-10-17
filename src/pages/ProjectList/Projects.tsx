@@ -51,13 +51,9 @@ const Projects: React.FC = () => {
       }
     });
 
-    // Ordonner les featured (locations, reconnaissance, qcm)
-    const targets = ['locations', 'reconnaissance', 'qcm'];
-    featuredList.sort((a, b) => {
-      const orderA = targets.findIndex(k => a.name.toLowerCase().includes(k));
-      const orderB = targets.findIndex(k => b.name.toLowerCase().includes(k));
-      return (orderA === -1 ? 99 : orderA) - (orderB === -1 ? 99 : orderB);
-    });
+    // Ordonner les featured et les archives par ordre
+    featuredList.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    archiveList.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
     return { featured: featuredList, archives: archiveList };
   }, [filteredProjects]);
@@ -119,9 +115,9 @@ const Projects: React.FC = () => {
             ))
           ) : (
             featured.map((project) => {
-              const slug = getProjectSlug(project.name);
+              const slug = getProjectSlug(project);
               const kicker = getFullKicker(project);
-              const placeholder = getPlaceholderText(project.name);
+              const placeholder = getPlaceholderText(project);
 
               return (
                 <div key={project.name} className="featured-project-item">
@@ -160,7 +156,7 @@ const Projects: React.FC = () => {
             <h2 className="archives-title mono-label">{t('projectsPage.archivesTitle')}</h2>
             <div className="archives-list">
               {archives.map((project) => {
-                const slug = getProjectSlug(project.name);
+                const slug = getProjectSlug(project);
                 const meta = getArchiveMeta(project);
 
                 return (

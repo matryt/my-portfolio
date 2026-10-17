@@ -19,14 +19,7 @@ const FeaturedProjects: React.FC = () => {
 
   const featuredProjects = useMemo(() => {
     const featured = projects.filter(isFeaturedProject);
-
-    // Ordonner les 3 projets cibles
-    const targets = ['locations', 'reconnaissance', 'qcm'];
-    featured.sort((a, b) => {
-      const orderA = targets.findIndex(k => a.name.toLowerCase().includes(k));
-      const orderB = targets.findIndex(k => b.name.toLowerCase().includes(k));
-      return (orderA === -1 ? 99 : orderA) - (orderB === -1 ? 99 : orderB);
-    });
+    featured.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
     if (featured.length > 0) return featured.slice(0, 3);
     return projects.slice(0, 3);
@@ -59,9 +52,9 @@ const FeaturedProjects: React.FC = () => {
             ))
           ) : (
             featuredProjects.map((project) => {
-              const slug = getProjectSlug(project.name);
+              const slug = getProjectSlug(project);
               const kicker = getKicker(project);
-              const placeholder = getPlaceholderText(project.name);
+              const placeholder = getPlaceholderText(project);
 
               return (
                 <div key={project.name} className="featured-item">

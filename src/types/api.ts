@@ -19,6 +19,7 @@ export interface Project {
   displayed: boolean;
   technologies: string[];
   name: string;
+  slug?: string;
   demo?: string;
   status?: Status;
   screenshots?: string[]; // Sera récupéré séparément
@@ -28,6 +29,9 @@ export interface Project {
   projectType?: "personal" | "school";
   order?: number;
   featured?: boolean;
+  domain?: string;
+  captureLabel?: string;
+  deployment?: string;
   hasImage?: boolean; // Indique si le projet a une image
   hasScreenshots?: boolean; // Indique si le projet a des screenshots
 }
