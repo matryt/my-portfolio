@@ -3,11 +3,7 @@ import EducationList from '../EducationList/EducationList';
 import JobsList from '../JobsList/JobsList';
 import './ParcoursSection.scss';
 
-interface ParcoursSectionProps {
-  // Aucune prop nécessaire pour l'instant, mais préparé pour l'extensibilité
-}
-
-const ParcoursSection: React.FC<ParcoursSectionProps> = () => {
+const ParcoursSection: React.FC = () => {
   const { t } = useTranslation();
   
   return (

@@ -29,7 +29,7 @@ export const useIntersectionObserver = (
     rootMargin = '50px', // Commence à charger 50px avant d'être visible
     triggerOnce = true, // Par défaut, se déclenche une seule fois
     delay = 0,
-    ...restOptions
+    root,
   } = options;
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const useIntersectionObserver = (
     observerRef.current = new IntersectionObserver(handleIntersection, {
       threshold,
       rootMargin,
-      ...restOptions,
+      root,
     });
 
     observerRef.current.observe(element);
@@ -82,7 +82,7 @@ export const useIntersectionObserver = (
         observerRef.current.disconnect();
       }
     };
-  }, [threshold, rootMargin, triggerOnce, delay]);
+  }, [threshold, rootMargin, triggerOnce, delay, root]);
 
   // Hook pour forcer la déconnexion (utile pour économiser la mémoire)
   const disconnect = () => {

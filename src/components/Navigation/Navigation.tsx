@@ -8,7 +8,7 @@ const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible] = useState(true);
   const location = useLocation();
   const { t } = useTranslation();
 
@@ -64,20 +64,6 @@ const Navigation: React.FC = () => {
 
   const isHomePage = location.pathname === '/';
 
-  // Animation d'apparition du menu après l'animation d'accueil
-  useEffect(() => {
-    if (isHomePage) {
-      // Sur la page d'accueil, attendre la fin de l'animation hero (2.5s)
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 2500);
-      
-      return () => clearTimeout(timer);
-    } else {
-      // Sur les autres pages, afficher immédiatement
-      setIsVisible(true);
-    }
-  }, [isHomePage]);
 
   return (
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''} ${isVisible ? 'visible' : 'hidden'}`}>
@@ -206,13 +192,13 @@ const Navigation: React.FC = () => {
               </Link>
             </li>
             <li className="nav-mobile-item">
-              <a 
-                href="mailto:hello@mathieucuvelier.fr" 
-                className="nav-mobile-link nav-mobile-cta"
+              <Link 
+                to="/contact" 
+                className={`nav-mobile-link ${location.pathname === '/contact' ? 'active' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
-              </a>
+              </Link>
             </li>
             <li className="nav-mobile-item">
               <div className="nav-mobile-language">

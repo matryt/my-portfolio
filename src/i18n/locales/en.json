@@ -90,5 +90,12 @@
     "success": "Your message has been sent successfully!",
     "error": "An error occurred.",
     "errorSubmit": "Unable to submit the form."
+  },
+  "lazyImage": {
+    "awaiting": "Waiting for image...",
+    "loading": "Loading...",
+    "error": "Failed to load image",
+    "noImage": "No image",
+    "textOnly": "Text-only project"
   }
 }

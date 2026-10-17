@@ -91,5 +91,12 @@
     "success": "Votre message a été envoyé avec succès !",
     "error": "Une erreur est survenue.",
     "errorSubmit": "Impossible de soumettre le formulaire."
+  },
+  "lazyImage": {
+    "awaiting": "Image en attente...",
+    "loading": "Chargement...",
+    "error": "Erreur de chargement",
+    "noImage": "Pas d'image",
+    "textOnly": "Projet textuel"
   }
 }

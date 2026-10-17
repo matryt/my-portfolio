@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLazyProjectImage } from '../../hooks/useLazyProjectImage';
 import { useLanguage } from '../../contexts/LanguageContext'; // Import du contexte langue
 import type { ProjectData } from '../../types/api';
@@ -26,6 +27,7 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { language } = useLanguage(); // Utilisation du contexte langue
+  const { t } = useTranslation();
   
   // Lazy loading avec intersection observer
   const {
@@ -51,20 +53,20 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
             <div className="image-placeholder awaiting">
               <div className="placeholder-content">
                 <span className="placeholder-icon">🖼️</span>
-                <span className="placeholder-text">Image en attente...</span>
+                <span className="placeholder-text">{t('lazyImage.awaiting')}</span>
               </div>
             </div>
           ) : isLoading ? (
             // Loading spinner pendant le chargement
             <div className="image-placeholder loading">
               <div className="spinner"></div>
-              <span className="loading-text">Chargement...</span>
+              <span className="loading-text">{t('lazyImage.loading')}</span>
             </div>
           ) : hasError ? (
             // État d'erreur
             <div className="image-placeholder error">
               <span className="error-icon">⚠️</span>
-              <span className="error-text">Erreur de chargement</span>
+              <span className="error-text">{t('lazyImage.error')}</span>
             </div>
           ) : imageUrl ? (
             // Image chargée avec succès
@@ -79,7 +81,7 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
             // Fallback si pas d'URL d'image
             <div className="image-placeholder no-image">
               <span className="no-image-icon">📷</span>
-              <span className="no-image-text">Pas d'image</span>
+              <span className="no-image-text">{t('lazyImage.noImage')}</span>
             </div>
           )}
         </>
@@ -87,7 +89,7 @@ const LazyProjectImage: React.FC<LazyProjectImageProps> = ({
         // Pas d'image prévue pour ce projet
         <div className="image-placeholder no-image">
           <span className="no-image-icon">📄</span>
-          <span className="no-image-text">Projet textuel</span>
+          <span className="no-image-text">{t('lazyImage.textOnly')}</span>
         </div>
       )}
     </div>

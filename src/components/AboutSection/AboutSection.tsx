@@ -2,11 +2,7 @@ import { forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import './AboutSection.scss';
 
-interface AboutSectionProps {
-  // Aucune prop nécessaire pour l'instant
-}
-
-const AboutSection = forwardRef<HTMLElement, AboutSectionProps>((_, ref) => {
+const AboutSection = forwardRef<HTMLElement>((_, ref) => {
   const { t } = useTranslation();
   return (
     <section className="about-section" ref={ref} id="about">

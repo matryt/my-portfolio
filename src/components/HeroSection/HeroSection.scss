@@ -94,40 +94,23 @@
     .cta-button {
       position: relative;
       display: inline-block;
-      padding: 15px 40px;
-      background: linear-gradient(135deg, global.$green, global.$teal);
-      color: white;
+      padding: 14px 32px;
+      background: #C93A1F;
+      color: #FFFFFF;
       text-decoration: none;
-      border-radius: 50px;
+      border-radius: 4px;
       font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
 
       span {
         position: relative;
         z-index: 2;
       }
 
-      .button-glow {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.6s ease;
-      }
-
       &:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 12px 35px rgba(100, 255, 218, 0.4);
-        animation: glow 2s ease-in-out infinite alternate;
-
-        .button-glow {
-          left: 100%;
-        }
+        background: #B33219;
       }
     }
   }
