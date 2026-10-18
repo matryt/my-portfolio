@@ -2,6 +2,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { fetchProjects, fetchEducationItems, fetchJobs } from '../api';
 import { useEffect, useState } from 'react';
 import type { ProjectData, EducationItem, JobItem } from '../types/api';
+import { normalizeSlug } from '../utils/projectUtils';
 
 // Hook pour fetch des projets avec la langue actuelle
 export const useProjects = () => {
@@ -107,14 +108,13 @@ export const useProject = (projectName: string) => {
         setError(null);
         // Récupérer tous les projets et chercher celui qui correspond
         const allProjects = await fetchProjects(language);
-        const decoded = decodeURIComponent(projectName).toLowerCase();
-        const foundProject = allProjects.find(
-          (p) =>
-            p.name.toLowerCase().replace(/\s+/g, '-') === decoded ||
-            p.name.toLowerCase() === decoded ||
-            (p.id && p.id.toLowerCase() === decoded) ||
-            (p.id && p.id.toLowerCase().replace(/\s+/g, '-') === decoded)
-        );
+        const target = normalizeSlug(decodeURIComponent(projectName));
+        const foundProject = allProjects.find((p) => {
+          if (p.slug && normalizeSlug(p.slug) === target) return true;
+          if (normalizeSlug(p.name) === target) return true;
+          if (p.id && normalizeSlug(p.id) === target) return true;
+          return false;
+        });
         setProject(foundProject || null);
       } catch (err) {
         setError('Failed to fetch project');

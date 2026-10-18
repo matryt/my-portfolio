@@ -1,10 +1,19 @@
 import type { ProjectData } from '../types/api';
 
+export const normalizeSlug = (str: string): string => {
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 export const getProjectSlug = (projectOrName: { name: string; slug?: string } | string): string => {
   if (typeof projectOrName === 'string') {
-    return projectOrName.toLowerCase().replace(/\s+/g, '-');
+    return normalizeSlug(projectOrName);
   }
-  return projectOrName.slug || projectOrName.name.toLowerCase().replace(/\s+/g, '-');
+  return projectOrName.slug || normalizeSlug(projectOrName.name);
 };
 
 export const getPlaceholderText = (projectOrName: { name: string; captureLabel?: string } | string): string => {
