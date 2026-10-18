@@ -74,18 +74,44 @@
     line-height: 1.5;
     margin: 0;
 
-    p {
-      margin: 0.25rem 0;
-      color: global.$text-secondary;
-      font-size: 0.95rem;
-
+    p, li {
       strong {
         color: global.$ink;
         font-weight: 600;
       }
+
+      em {
+        font-style: italic;
+      }
+
+      code {
+        font-family: global.$font-mono;
+        font-size: 0.85em;
+        background-color: #E2E5E8;
+        border: 1px solid global.$border;
+        padding: 1px 4px;
+        color: global.$ink;
+      }
+
+      a {
+        color: global.$accent;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: color 0.15s ease;
+
+        &:hover {
+          color: global.$accent-hover;
+        }
+      }
     }
 
-    ul {
+    p {
+      margin: 0.25rem 0;
+      color: global.$text-secondary;
+      font-size: 0.95rem;
+    }
+
+    ul, ol {
       margin: 0.25rem 0 0.5rem 1.25rem;
       padding: 0;
 
@@ -93,11 +119,6 @@
         color: global.$text-secondary;
         font-size: 0.95rem;
         margin-bottom: 0.2rem;
-
-        strong {
-          color: global.$ink;
-          font-weight: 600;
-        }
       }
     }
   }

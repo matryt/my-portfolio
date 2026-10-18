@@ -3,14 +3,16 @@ import { type ReactNode } from 'react';
 /**
  * Parse les éléments inline Markdown :
  * - [texte](url) -> lien <a> avec target="_blank"
+ * - ***texte*** -> <strong><em>texte</em></strong>
  * - **texte** -> <strong>texte</strong>
  * - *texte* ou _texte_ -> <em>texte</em>
+ * - ~~texte~~ -> <del>texte</del>
  * - `code` -> <code>code</code>
  */
 export const parseInlineFormatting = (text: string): ReactNode[] => {
   if (!text) return [];
 
-  const tokenRegex = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|_([^_]+)_)/g;
+  const tokenRegex = /(\[([^\]]+)\]\(([^)]+)\)|\*\*\*([^*]+)\*\*\*|\*\*([^*]+)\*\*|\*([^*]+)\*|~~([^~]+)~~|`([^`]+)`|_([^_]+)_)/g;
   const elements: ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -20,7 +22,7 @@ export const parseInlineFormatting = (text: string): ReactNode[] => {
       elements.push(text.slice(lastIndex, match.index));
     }
 
-    const [fullMatch, , linkText, linkUrl, boldText, italicAsterisk, codeText, italicUnderscore] = match;
+    const [fullMatch, , linkText, linkUrl, boldItalicText, boldText, italicAsterisk, strikethroughText, codeText, italicUnderscore] = match;
 
     if (linkText && linkUrl) {
       elements.push(
@@ -33,10 +35,18 @@ export const parseInlineFormatting = (text: string): ReactNode[] => {
           {linkText}
         </a>
       );
+    } else if (boldItalicText) {
+      elements.push(
+        <strong key={`bi-${match.index}`}>
+          <em>{boldItalicText}</em>
+        </strong>
+      );
     } else if (boldText) {
       elements.push(<strong key={`b-${match.index}`}>{boldText}</strong>);
     } else if (italicAsterisk || italicUnderscore) {
       elements.push(<em key={`em-${match.index}`}>{italicAsterisk || italicUnderscore}</em>);
+    } else if (strikethroughText) {
+      elements.push(<del key={`del-${match.index}`}>{strikethroughText}</del>);
     } else if (codeText) {
       elements.push(<code key={`code-${match.index}`}>{codeText}</code>);
     } else {
