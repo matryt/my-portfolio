@@ -23,9 +23,8 @@ export interface Project {
   demo?: string;
   status?: Status;
   screenshots?: string[]; // Sera récupéré séparément
-  whatILearned?: string;
   longDescription?: string;
-  problemsAndSolutions?: string;
+  designChoices?: string;
   projectType?: "personal" | "school";
   order?: number;
   featured?: boolean;

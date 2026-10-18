@@ -97,11 +97,11 @@ const ProjectDetail: React.FC = () => {
           )}
 
           {/* CHOIX DE CONCEPTION */}
-          {project.problemsAndSolutions && (
+          {project.designChoices && (
             <div className="editorial-block">
               <h2 className="block-title">{t('projectDetail.designChoices', 'Trois choix de conception')}</h2>
               <div className="block-body">
-                {splitMultiLineText(project.problemsAndSolutions)}
+                {splitMultiLineText(project.designChoices)}
               </div>
             </div>
           )}
