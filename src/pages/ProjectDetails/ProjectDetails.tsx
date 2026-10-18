@@ -107,7 +107,7 @@ const ProjectDetail: React.FC = () => {
           )}
 
           {/* MISE EN PRODUCTION */}
-          {(project.deployment || project.demo) && (
+          {(project.deployment || project.demo || project.demoNote) && (
             <div className="editorial-block">
               <h2 className="block-title">{t('projectDetail.deployment', 'Mise en production')}</h2>
               <div className="block-body">
@@ -119,6 +119,13 @@ const ProjectDetail: React.FC = () => {
                     <a href={project.demo} target="_blank" rel="noopener noreferrer" className="deployment-link">
                       {project.demo}
                     </a>
+                    {project.demoNote && (
+                      <span className="deployment-restriction"> ({project.demoNote})</span>
+                    )}
+                  </p>
+                ) : project.demoNote ? (
+                  <p>
+                    <strong>{t('projectDetail.access', 'Accès :')}</strong> {project.demoNote}
                   </p>
                 ) : null}
               </div>
@@ -143,28 +150,51 @@ const ProjectDetail: React.FC = () => {
           <div className="sidebar-section">
             <h3 className="sidebar-title">{t('projectDetail.links', 'Liens')}</h3>
             <div className="links-list">
+              {/* GITHUB */}
               {project.github ? (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="editorial-link"
-                >
-                  GitHub →
-                </a>
+                <div className="link-item">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="editorial-link"
+                  >
+                    {t('projectDetail.github', 'GitHub')} →
+                  </a>
+                  {project.githubNote && (
+                    <span className="link-note">({project.githubNote})</span>
+                  )}
+                </div>
+              ) : project.githubNote ? (
+                <div className="link-item link-item-note">
+                  <span className="link-label">{t('projectDetail.githubShort', 'GitHub :')}</span>
+                  <span className="link-note">{project.githubNote}</span>
+                </div>
               ) : (
-                <span className="placeholder-tag">{t('projectDetail.privateRepo', '[DÉPÔT PRIVÉ : À PRÉCISER]')}</span>
+                <span className="placeholder-tag">{t('projectDetail.privateRepo', '[DÉPÔT PRIVÉ]')}</span>
               )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="editorial-link"
-                >
-                  {t('projectDetail.demo', 'Démo en ligne')} →
-                </a>
-              )}
+
+              {/* DEMO */}
+              {project.demo ? (
+                <div className="link-item">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="editorial-link"
+                  >
+                    {t('projectDetail.demo', 'Démo en ligne')} →
+                  </a>
+                  {project.demoNote && (
+                    <span className="link-note">({project.demoNote})</span>
+                  )}
+                </div>
+              ) : project.demoNote ? (
+                <div className="link-item link-item-note">
+                  <span className="link-label">{t('projectDetail.demoShort', 'Démo :')}</span>
+                  <span className="link-note">{project.demoNote}</span>
+                </div>
+              ) : null}
             </div>
           </div>
 

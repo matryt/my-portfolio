@@ -15,12 +15,14 @@ export interface Project {
   partners: PersonDetails[];
   description: string;
   github: string;
+  githubNote?: string;
   image?: string; // Optionnel car sera récupéré séparément
   displayed: boolean;
   technologies: string[];
   name: string;
   slug?: string;
   demo?: string;
+  demoNote?: string;
   status?: Status;
   screenshots?: string[]; // Sera récupéré séparément
   longDescription?: string;
