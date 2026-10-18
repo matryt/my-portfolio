@@ -67,6 +67,27 @@
       margin: 0.25rem 0;
       color: global.$text-secondary;
       font-size: 0.95rem;
+
+      strong {
+        color: global.$ink;
+        font-weight: 600;
+      }
+    }
+
+    ul {
+      margin: 0.25rem 0 0.5rem 1.25rem;
+      padding: 0;
+
+      li {
+        color: global.$text-secondary;
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+
+        strong {
+          color: global.$ink;
+          font-weight: 600;
+        }
+      }
     }
   }
 

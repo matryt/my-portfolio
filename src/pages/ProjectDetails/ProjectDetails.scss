@@ -147,6 +147,66 @@
             color: global.$ink;
             font-weight: 600;
           }
+
+          em {
+            font-style: italic;
+          }
+        }
+
+        .editorial-subheading {
+          font-family: global.$font-sans;
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: global.$ink;
+          margin: 1.5rem 0 0.5rem;
+        }
+
+        .editorial-list,
+        .editorial-ordered-list {
+          margin: 0.5rem 0 1.25rem 1.5rem;
+          padding: 0;
+
+          li {
+            font-family: global.$font-sans;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: global.$ink;
+            margin-bottom: 0.4rem;
+
+            strong {
+              color: global.$ink;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .editorial-list {
+          list-style-type: disc;
+        }
+
+        .editorial-ordered-list {
+          list-style-type: decimal;
+        }
+
+        code {
+          font-family: global.$font-mono;
+          font-size: 0.9em;
+          background-color: #E2E5E8;
+          border: 1px solid global.$border;
+          padding: 2px 6px;
+          border-radius: 0;
+          color: global.$ink;
+        }
+
+        a {
+          color: global.$accent;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          transition: color 0.15s ease;
+
+          &:hover {
+            color: global.$accent-hover;
+          }
         }
 
         .deployment-link {
