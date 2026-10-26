@@ -3,6 +3,7 @@ name: Build and Push ARM64
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # Permet de relancer un build à la demande sans commit
 
 env:
   REGISTRY: ghcr.io
@@ -33,5 +34,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          pull: true # Vérifie toujours les dernières révisions de node:22-alpine et nginx-unprivileged
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
