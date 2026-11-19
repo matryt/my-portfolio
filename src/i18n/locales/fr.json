@@ -96,8 +96,7 @@
   "language": {
     "french": "Français",
     "english": "English"
-  }
-  ,
+  },
   "months": {
     "1": "Janvier",
     "2": "Février",
@@ -114,7 +113,7 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "[UNE PHRASE SUR CE POUR QUOI ON PEUT T’ÉCRIRE]",
+    "intro": "Un projet à partager, une question sur mes réalisations ou simplement envie d’échanger sur l’écosystème Java / Spring et l’ingénierie logicielle ? N’hésitez pas à m’envoyer un message.",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "name": "Nom",

@@ -113,7 +113,7 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "[A SENTENCE ABOUT WHAT PEOPLE CAN WRITE TO YOU FOR]",
+    "intro": "Do you have a project you’d like to share, a question about my work, or just want to discuss about Java/Spring ecosystem and software engineering? Feel free to send me a message.",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "name": "Name",
