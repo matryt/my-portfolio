@@ -3,7 +3,29 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
-    "experience": "Parcours"
+    "experience": "Parcours",
+    "contact": "Contact"
+  },
+  "home": {
+    "kicker": "ÉTUDIANT INGÉNIEUR · POLYTECH NICE-SOPHIA · ALTERNANCE CHEZ DOCAPOSTE",
+    "headline": "Je conçois des applications web et je m'occupe de leur sécurité, du code jusqu'au déploiement.",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter",
+    "featuredTitle": "PROJETS EN AVANT",
+    "allProjects": "TOUS LES PROJETS ET ARCHIVES →",
+    "experienceTitle": "EXPÉRIENCE",
+    "educationTitle": "FORMATION"
+  },
+  "projectsPage": {
+    "title": "Projets",
+    "filters": {
+      "all": "Tous",
+      "personal": "Perso",
+      "school": "Scolaire",
+      "collaborative": "Collaboratif"
+    },
+    "archivesTitle": "ARCHIVES",
+    "empty": "Aucun projet ne correspond à ce filtre."
   },
   "hero": {
     "greeting": "Bonjour, je suis Mathieu Cuvelier.",
@@ -22,15 +44,25 @@
   },
   "projectDetail": {
     "loading": "Chargement du projet...",
+    "backToProjects": "Projets",
     "screenshots": "Captures d'écran",
+    "whatItDoes": "Ce que fait le site",
     "context": "Contexte et fonctionnalités",
+    "designChoices": "Trois choix de conception",
     "problems": "Problèmes et solutions",
+    "deployment": "Mise en production",
+    "deployedAt": "Déployé et accessible en ligne :",
     "learned": "Ce que j'ai appris",
-    "technologies": "Technologies utilisées",
-    "links": "Liens du projet",
-    "github": "Voir sur GitHub",
-    "demo": "Voir la démo",
-    "collaborators": "Co-créateurs",
+    "technologies": "Technologies",
+    "links": "Liens",
+    "github": "GitHub",
+    "githubShort": "GitHub :",
+    "demo": "Démo en ligne",
+    "demoShort": "Démo :",
+    "access": "Accès :",
+    "collaborators": "Co-créateur",
+    "collaboratorsPlural": "Co-créateurs",
+    "privateRepo": "[Dépôt privé]",
     "noImages": "Images non disponibles",
     "loadingImages": "Chargement des images..."
   },
@@ -55,17 +87,16 @@
     }
   },
   "education": {
-    "title": "🎓 Éducation"
+    "title": "Formation"
   },
   "jobs": {
-    "title": "💼 Expérience professionnelle",
+    "title": "Expérience",
     "since": "Depuis"
   },
   "language": {
     "french": "Français",
     "english": "English"
-  }
-  ,
+  },
   "months": {
     "1": "Janvier",
     "2": "Février",
@@ -81,7 +112,8 @@
     "12": "Décembre"
   },
   "contact": {
-    "title": "Contactez-moi",
+    "title": "Contact",
+    "intro": "Un projet à partager, une question sur mes réalisations ou simplement envie d’échanger sur l’écosystème Java / Spring et l’ingénierie logicielle ? N’hésitez pas à m’envoyer un message.",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "name": "Nom",
@@ -90,6 +122,17 @@
     "send": "Envoyer",
     "success": "Votre message a été envoyé avec succès !",
     "error": "Une erreur est survenue.",
-    "errorSubmit": "Impossible de soumettre le formulaire."
+    "errorSubmit": "Impossible de soumettre le formulaire.",
+    "errorRequired": "Tous les champs sont requis.",
+    "errorEmail": "Veuillez saisir une adresse email valide.",
+    "errorMinMessage": "Le message doit contenir au moins 10 caractères.",
+    "rateLimit": "Trop de messages envoyés. Veuillez patienter quelques minutes."
+  },
+  "lazyImage": {
+    "awaiting": "Image en attente...",
+    "loading": "Chargement...",
+    "error": "Erreur de chargement",
+    "noImage": "Pas d'image",
+    "textOnly": "Projet textuel"
   }
 }

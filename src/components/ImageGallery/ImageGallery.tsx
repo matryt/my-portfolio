@@ -42,7 +42,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
               >
                 <img src={image} alt={`Capture ${index + 1}`} />
                 <div className="thumbnail-overlay">
-                  <span className="zoom-icon">🔍</span>
+                  <span className="zoom-icon">AGRANDIR</span>
                 </div>
               </div>
             ))}

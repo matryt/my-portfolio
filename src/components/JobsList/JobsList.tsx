@@ -11,67 +11,67 @@ export default function JobsList() {
   const formatDate = (timestamp?: number) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
-    // Les mois sont indexés de 0 à 11, donc on ajoute 1
     const monthNumber = date.getMonth() + 1;
-    return `${t(`months.${monthNumber}`)} ${date.getFullYear()}`;
+    const monthStr = t(`months.${monthNumber}`).slice(0, 4).toUpperCase();
+    return `${monthStr}. ${date.getFullYear()}`;
   };
 
   const formatDateRange = (start?: number, end?: number) => {
     if (!start) return '';
-    if (!end || start === end) return t("jobs.since") + " " + formatDate(start);
+    if (!end || start === end) return `${t("jobs.since").toUpperCase()} ${formatDate(start)}`;
 
     const startDate = new Date(start);
     const endDate = new Date(end);
     
-    // Calculer la différence en mois
     const monthDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12 + 
                      (endDate.getMonth() - startDate.getMonth());
     
-    // Si moins d'un mois, afficher seulement le mois/année de début
     if (monthDiff < 1) {
       return formatDate(start);
     }
     
-    // Sinon afficher la période complète
-    return `${formatDate(start)} - ${formatDate(end)}`;
+    return `${formatDate(start)} – ${formatDate(end)}`;
   };
 
   return (
     <section className="jobs-section">
-      <h2>{t('jobs.title')}</h2>
+      <h2 className="mono-label">{t('home.experienceTitle')}</h2>
       <div className="jobs-list">
         {isLoading ? (
-          // Placeholders pendant le chargement
-          Array.from({ length: 3 }, (_, idx) => (
+          Array.from({ length: 2 }, (_, idx) => (
             <div key={idx} className="job-card skeleton">
-              <div className="skeleton-title"></div>
+              <div className="job-card-header">
+                <div className="skeleton-title"></div>
+                <div className="skeleton-date"></div>
+              </div>
               <div className="skeleton-text"></div>
-              <div className="skeleton-text short"></div>
-              <div className="skeleton-date"></div>
             </div>
           ))
         ) : (
           jobs.map((job: JobItem, idx: number) => (
             <div key={job.order ?? idx} className="job-card">
-              <h3>
-                {job.title} @ {" "}
-                {job.companyUrl ? (
-                  <a 
-                    href={job.companyUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="company-link"
-                  >
-                    {job.company}
-                  </a>
-                ) : (
-                  job.company
-                )}
-              </h3>
-              {splitMultiLineText(job.description)}
-              <span>
-                {formatDateRange(job.start, job.end)}
-              </span>
+              <div className="job-card-header">
+                <h3>
+                  {job.title} · {job.companyUrl ? (
+                    <a 
+                      href={job.companyUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="company-link"
+                    >
+                      {job.company}
+                    </a>
+                  ) : (
+                    job.company
+                  )}
+                </h3>
+                <span className="job-date">
+                  {formatDateRange(job.start, job.end)}
+                </span>
+              </div>
+              <div className="job-description">
+                {splitMultiLineText(job.description)}
+              </div>
             </div>
           ))
         )}

@@ -15,18 +15,24 @@ export interface Project {
   partners: PersonDetails[];
   description: string;
   github: string;
+  githubNote?: string;
   image?: string; // Optionnel car sera récupéré séparément
   displayed: boolean;
   technologies: string[];
   name: string;
+  slug?: string;
   demo?: string;
+  demoNote?: string;
   status?: Status;
   screenshots?: string[]; // Sera récupéré séparément
-  whatILearned?: string;
   longDescription?: string;
-  problemsAndSolutions?: string;
+  designChoices?: string;
   projectType?: "personal" | "school";
   order?: number;
+  featured?: boolean;
+  domain?: string;
+  captureLabel?: string;
+  deployment?: string;
   hasImage?: boolean; // Indique si le projet a une image
   hasScreenshots?: boolean; // Indique si le projet a des screenshots
 }

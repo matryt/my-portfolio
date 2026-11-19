@@ -1,0 +1,54 @@
+@use "../../styles/global.scss" as global;
+
+.site-footer {
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid global.$border;
+  background-color: global.$bg;
+  padding: 2rem 0;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-email,
+  .footer-link {
+    font-family: global.$font-mono;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: global.$label-gray;
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: global.$accent;
+      text-decoration: none;
+    }
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .footer-sep {
+      color: global.$border;
+      font-family: global.$font-mono;
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 1.5rem 0;
+
+    .footer-content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

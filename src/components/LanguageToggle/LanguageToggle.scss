@@ -1,43 +1,34 @@
 @use "../../styles/global.scss" as global;
 
 .language-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   background: transparent;
-  border: 1px solid rgba(100, 255, 218, 0.3);
-  border-radius: 6px;
-  padding: 8px 12px;
+  border: none;
+  padding: 4px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-  font-size: 0.9rem;
-
-  &:hover {
-    border-color: global.$green;
-    background: rgba(100, 255, 218, 0.1);
-  }
+  font-family: global.$font-mono;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 
   .lang-option {
-    color: global.$light-slate;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    color: global.$label-gray;
+    font-weight: 400;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: global.$accent;
+    }
 
     &.active {
-      color: global.$green;
+      color: global.$ink;
+      font-weight: 600;
     }
   }
 
   .separator {
-    color: global.$slate;
-    margin: 0 8px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-    
-    .separator {
-      margin: 0 6px;
-    }
+    color: global.$border;
+    margin: 0 6px;
   }
 }

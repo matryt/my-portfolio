@@ -16,8 +16,22 @@ export const fetchProjects = async (lang: 'fr' | 'en' = 'fr'): Promise<ProjectDa
 
 export const fetchProjectByName = async (projectName: string, lang: 'fr' | 'en' = 'fr'): Promise<ProjectData | null> => {
   try {
+    const normalize = (str: string) =>
+      str
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+    const target = normalize(projectName);
     const response = await axios.get<ProjectData[]>(`${API_BASE_URL}/projects?lang=${lang}`);
-    const project = response.data.find((p: ProjectData) => p.name === projectName);
+    const project = response.data.find(
+      (p: ProjectData) =>
+        (p.slug && normalize(p.slug) === target) ||
+        normalize(p.name) === target ||
+        (p.id && normalize(p.id) === target)
+    );
     return project || null;
   } catch (error) {
     console.error(`Failed to fetch project ${projectName}:`, error);
