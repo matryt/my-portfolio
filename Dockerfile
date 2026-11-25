@@ -9,7 +9,7 @@ COPY . .
 RUN npm run build
 
 # Étape 2 : Production Nginx
-FROM nginx/nginx-unprivileged:alpine3.24-perl
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8080
